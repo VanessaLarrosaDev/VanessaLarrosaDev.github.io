@@ -1,94 +1,130 @@
 
+/* Importa la fuente desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
-/* Reset y configuración base*/
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
+/* =======================
+RESET Y CONFIGURACIÓN BASE
+======================= */
+* {
+    margin: 0; /* Elimina márgenes por defecto */
+    padding: 0; /* Elimina rellenos por defecto */
+    box-sizing: border-box; /* Incluye el padding y border dentro del ancho/alto total */
 }
 
 body {
-    font-family: "Space Grotesk", sans-serif;
-    background-color: #000;
-    color: #fff;
-    line-height: 1.6;
+    font-family: "Space Grotesk", sans-serif; /* Fuente personalizada */
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    line-height: 1.6; /* Altura de línea para legibilidad */
+}
+
+/* =======================
+HEADER
+======================= */
+
+header {
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semi-transparente */
+    backdrop-filter: blur(20px); /* Efecto de desenfoque (vidrio esmerilado) */
+    -webkit-backdrop-filter: blur(20px); /* Soporte para Safari */
+    padding: 15px 20px; /* Espaciado interior */
+    position: fixed; /* Fija el header arriba al hacer scroll */
+    width: 100%; /* Ocupa todo el ancho */
+    top: 0; /* Pegado arriba */
+    z-index: 1000; /* Asegura que esté por encima del contenido */
+    border-bottom: 1px solid transparent; /* Línea inferior inicial invisible */
+    transition: all 0.3s ease; /* Transición suave al hacer scroll */
+}
+
+/* Cambios visuales al hacer scroll */
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(187, 126, 251, 0.4); /* Borde morado claro */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;  
+    display: flex; /* Coloca los elementos en línea */
+    justify-content: space-between; /* Espacio entre logo y navegación */
+    align-items: center; /* Centrado vertical */
+    max-width: 100%; /* Que no se desborde */
 }
 
-.header {
-    background-color: #000;
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #333;
-}
-
-.header.container{
+/* =======================
+LOGO
+======================= */
+.logo {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 12px; /* Espacio entre imagen y texto */
 }
 
-.logo img {
-    display:flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo img {
+.logo-img {
+    width: 45px;
     height: 45px;
-    width: auto;
+    background: #fff; /* Fondo blanco */
+    border-radius: 8px; /* Esquinas redondeadas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000; /* Texto negro dentro del logo */
 }
 
-.nav {
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.5px; /* Espaciado entre letras */
+}
+
+/* =======================
+CONTROLES DE NAVEGACIÓN
+======================= */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Selector de idioma */
+.language-selector {
     display: flex;
     align-items: center;
 }
 
-.nav-menu {
-    position: fixed;
-    top: 80px;
-    left: -100%;
-    width: 100%;
-    height: calc(100vh - 80px);
-    background-color: #000;
-    flex-direction: column;
-    justify-content: flex-start;
+.lang-toggle {
+    display: flex;
     align-items: center;
-    padding-top: 50px;
-    transition: left 0.3s ease;
-    list-style: none;
-}
-.nav-menu.active {
-    left: 0;
-}
-
-.nav-menu li {
-    margin: 20px 0;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; /* Botón redondo */
+    background: transparent;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.nav-menu a {
+.lang-text {
     color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 400;
-    transition: color 0.3s ease;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-.nav-menu a:hover {
-    color: #ccc;
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.1); /* Sutil efecto hover */
 }
 
+.lang-toggle:active {
+    transform: scale(0.95); /* Efecto de clic */
+}
+
+/* =======================
+MENÚ HAMBURGUESA
+======================= */
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -97,73 +133,445 @@ body {
     cursor: pointer;
     padding: 5px;
     gap: 4px;
+    z-index: 1001; /* Por encima del menú */
 }
 
-.hamburger span {
-    width: 25px;
+.hamburger .bar {
+    width: 22px;
     height: 2px;
     background-color: #fff;
-    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Animación de hamburguesa a X al activarse */
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* =======================
+MENÚ DE NAVEGACIÓN (MÓVIL)
+======================= */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto fuera de pantalla */
+    width: 280px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(187, 126, 251, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 40px;
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    list-style: none;
+    z-index: 999;
+}
+
+/* Cuando está activo (menú abierto) */
+.nav-menu.active {
+    right: 0;
+}
+
+.nav-menu li {
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateX(30px); /* Aparece desde la derecha */
     transition: all 0.3s ease;
 }
 
-/*Animación  del menú hamburguesa*/
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+/* Animaciones de aparición con delay */
+.nav-menu.active li {
+    opacity: 1;
+    transform: translateX(0);
 }
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
+
+.nav-menu.active li:nth-child(1) { transition-delay: 0.1s; }
+.nav-menu.active li:nth-child(2) { transition-delay: 0.2s; }
+.nav-menu.active li:nth-child(3) { transition-delay: 0.3s; }
+
+/* ESTILOS BASE PARA ENLACES DEL MENÚ */
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 8px 0;
+    position: relative;
+    display: block;
+    transition: all 0.3s ease;
 }
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+
+/* MÓVIL: Solo efectos activos (sin hover) */
+@media (max-width: 1023px) {
+    .nav-menu a.active {
+        background-image: linear-gradient(90deg, #BB7EFB, #E8D9FB);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transform: translateX(5px);
+    }
+
+    .nav-menu a.active::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(90deg, #BB7EFB, #E8D9FB);
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(90deg, #BB7EFB, #E8D9FB);
+        transition: width 0.3s ease;
+    }
+}
+
+/* ESCRITORIO: Efectos hover + activos */
+@media (min-width: 1024px) {
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        background-image: linear-gradient(90deg, #BB7EFB, #E8D9FB);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transform: translateX(5px);
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(90deg, #BB7EFB, #E8D9FB);
+        transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after,
+    .nav-menu a.active::after {
+        width: 100%;
+    }
 }
 
 
-/* DESKTOP - Media Query */
-@media (min-width: 768px) {
-    .header {
-        padding: 25px 0;
+/* =======================
+FOOTER
+======================= */
+.footer {
+    background-color: rgba(0, 0, 0, 0.9); /* Igual que header */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 15px 20px; /* Más compacto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid transparent; /* Línea superior invisible */
+    transition: all 0.3s ease;
+    width: 100%;
+    /* No position fixed para que sea estático */
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column; /* Logo arriba, texto abajo */
+    align-items: center;
+    gap: 5px; /* Menor espacio entre logo y texto para ahorrar espacio */
+}
+
+.footer .logo-img {
+    width: 25px; 
+    height: 25px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.footer .logo-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #fff;
+    letter-spacing: 0.3px;
+    white-space: nowrap; /* Evita salto de línea */
+    opacity: 0.7; /* Un poco más sutil */ 
+}
+
+/* =======================
+ESTILOS PARA ESCRITORIO
+======================= */
+@media (min-width: 1024px) {
+    header {
+        padding: 20px 40px;
     }
-    
-    .logo img {
-        height: 40px;
+
+    .logo-img {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
     }
-    
-    /* Ocultar hamburguesa en desktop */
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    /* Elimina el menú hamburguesa en escritorio */
     .hamburger {
         display: none;
     }
-    
-    /* Mostrar menú horizontal en desktop */
+
+    /* Muestra menú como barra horizontal */
     .nav-menu {
         position: static;
         width: auto;
         height: auto;
         background: none;
+        backdrop-filter: none;
+        border: none;
         flex-direction: row;
         padding: 0;
         gap: 40px;
-        left: 0;
-        top: auto;
+        justify-content: flex-end;
+        align-items: center;
     }
-    
+
     .nav-menu li {
         margin: 0;
+        opacity: 1;
+        transform: none;
     }
-    
+
     .nav-menu a {
         font-size: 16px;
         font-weight: 500;
     }
+
+    .nav-controls {
+        gap: 30px;
+    }
+
+    .lang-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .lang-text {
+        font-size: 12px;
+    }
+
+    .main-logo {
+        width: 150px;
+        height: 150px;
+        font-size: 60px;
+    }
+
+    .main-title {
+        font-size: 42px;
+    }
 }
 
-/* Espaciado para contenido (porque header es fixed) */
-main {
-    padding-top: 80px;
+/* =======================
+HERO SECTION - SECCIÓN PRINCIPAL
+======================= */
+
+.hero {
+    min-height: 100vh; /* Altura mínima de toda la pantalla */
+    display: flex; /* Layout flexible */
+    flex-direction: column; /* Elementos en columna (vertical) */
+    justify-content: center; /* Centra verticalmente el contenido */
+    align-items: center; /* Centra horizontalmente el contenido */
+    text-align: center; /* Texto centrado */
+    padding: 20px;
+    position: relative; /* Para posicionar elementos internos absolutos */
+    overflow: hidden; /* Evita desbordamientos */
 }
 
+.hero-content {
+    max-width: 800px; /* Ancho máximo del contenido */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    animation: fadeInUp 1.2s ease-out; /* Animación de entrada desde abajo */
+    z-index: 1; /* Asegura que el contenido esté por encima de otros elementos */
+}
 
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 6rem); /* Tamaño responsivo: mín 40px, máx 96px */
+    font-weight: 700; /* Texto muy grueso/bold */
+    line-height: 1.4; /* Espaciado entre líneas apretado */
+    letter-spacing: 1.2px; /* Espacio entre letras */
+    margin: 0 0 20px; /* Sin margen superior, espacio inferior de 20px */
+    display: inline-block;
+    
+    /* Degradado permanente como en navegación */
+    background-image: linear-gradient(90deg, #BB7EFB, #E8D9FB); /* Degradado morado a lila */
+    -webkit-background-clip: text; /* Aplica el degradado solo al texto (Safari) */
+    background-clip: text; /* Aplica el degradado solo al texto (estándar) */
+    -webkit-text-fill-color: transparent; /* Hace el texto transparente para mostrar el degradado */
+    
+    /* Animación sutil de brillo */
+    background-size: 200% 200%; /* Hace el degradado más grande para el efecto brillo */
+    animation: fadeInUp 1.2s ease-out, shimmer 3s ease-in-out infinite; /* Múltiples animaciones */
+}
 
+.hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.3rem); /* Tamaño responsivo: mín 16px, máx 20px */
+    font-weight: 300; /* Texto ligero/fino */
+    line-height: 1.6; /* Espaciado entre líneas cómodo para lectura */
+    color: rgba(255, 255, 255, 0.8); /* Blanco con 80% opacidad (un poco transparente) */
+    max-width: 600px; /* Ancho máximo para mejor legibilidad */
+    margin: 0 auto 60px; /* Centrado horizontal y espacio inferior */
+    animation: fadeInUp 1.2s ease-out 0.3s both; /* Animación con retraso de 0.3s */
+}
 
+.scroll-indicator {
+    position: absolute; /* Posicionamiento absoluto respecto al hero */
+    bottom: 30px; /* A 30px desde la parte inferior */
+    left: 0; /* Alineado a la izquierda */
+    right: 0; /* Alineado a la derecha */
+    display: flex; /* Layout flexible */
+    flex-direction: column; /* Elementos en columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /*  Centra verticalmente */
+    gap: 15px; /* Espacio entre texto y flecha */
+    cursor: pointer; /* Muestra manita al pasar el ratón */
+    transition: all 0.3s ease; /* Transición suave para efectos hover */
+    animation: fadeInUp 1.2s ease-out 0.6s both; /* Animación con retraso de 0.6s */
+}
 
+.scroll-text {
+    font-size: 12px; /* Texto pequeño */
+    font-weight: 400; /* Peso normal */
+    color: rgba(255, 255, 255, 0.6); /* Blanco con 60% opacidad (más transparente) */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Convierte a mayúsculas */
+    text-align: center; /* Texto centrado */
+    white-space: nowrap; /* Evita salto de línea */
+}
 
+/* Estilos de la flecha base */
+.scroll-arrow {
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6); /* Color inicial de la flecha */
+    
+    /* Gira el icono para que apunte hacia abajo */
+    transform: rotate(90deg);
+    
+    /* Transición para el color y la posición */
+    transition: all 0.3s ease;
+    
+    /* Animación de pulso */
+    animation: pulse-down-subtle 2s ease-in-out infinite;
+}
+
+/* Efecto hover sobre el contenedor principal */
+.scroll-indicator:hover .scroll-arrow {
+    color: #BB7EFB; /* Color al pasar el ratón */
+    
+    /* Gira el icono y lo mueve ligeramente hacia abajo */
+    transform: rotate(90deg) translateY(4px);
+}
+
+/* =======================
+ANIMACIONES
+======================= */
+
+/* Animación de entrada desde abajo con desvanecimiento */
+@keyframes fadeInUp {
+    from {
+        opacity: 0; /* Comienza invisible */
+        transform: translateY(30px); /* Comienza 30px más abajo */
+    }
+    to {
+        opacity: 1; /* Termina completamente visible */
+        transform: translateY(0); /* Termina en su posición original */
+    }
+}
+
+/* Animación de brillo sutil en el título */
+@keyframes shimmer {
+    0%, 100% {
+        background-position: 0% 50%; /* Posición inicial y final del degradado */
+    }
+    50% {
+        background-position: 100% 50%; /* Posición intermedia del degradado */
+    }
+}
+
+/* Animación de pulso sutil hacia abajo para la flecha de scroll */
+@keyframes pulse-down-subtle {
+    0%, 100% {
+        /* Mantenemos la rotación en todo momento y aplicamos la animación */
+        transform: translateY(0px) rotate(90deg);
+        opacity: 0.6;
+    }
+    50% {
+        /* Mantenemos la rotación y el desplazamiento en la mitad de la animación */
+        transform: translateY(6px) rotate(90deg);
+        opacity: 1;
+    }
+}
+
+/* =======================
+RESPONSIVE HERO - ADAPTACIÓN A DIFERENTES PANTALLAS
+======================= */
+
+/* Para tablets (768px en adelante) */
+@media (min-width: 768px) {
+    .hero {
+        padding: 100px 40px; /* Más espaciado en tablets */
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem; /* Texto un poco más grande */
+        margin-bottom: 80px; /* Más espacio inferior */
+    }
+    
+    .scroll-indicator {
+        bottom: 60px; /* Más separado del borde inferior */
+    }
+    
+    .scroll-text {
+        font-size: 13px; /* Texto ligeramente más grande */
+    }
+    
+    .scroll-arrow {
+        width: 28px; /* Flecha más grande */
+        height: 28px;
+    }
+}
+
+/* Para escritorio (1024px en adelante) */
+@media (min-width: 1024px) {
+    .hero {
+        padding: 120px 40px; /* Aún más espaciado en escritorio */
+    }
+    
+    .hero-title {
+        margin-bottom: 40px; /* Más separación del título */
+    }
+    
+    .hero-subtitle {
+        font-size: 1.4rem; /* Texto más grande para escritorio */
+        margin-bottom: 100px; /* Mucho más espacio inferior */
+    }
+}

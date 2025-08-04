@@ -1,40 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Vanessa Larrosa</title>
+    <meta charset="UTF-8"> <!-- Establece la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace el sitio responsive -->
+    <title>Portfolio Vanessa Larrosa</title> <!-- Título que aparece en la pestaña del navegador -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> <!--Enlace a la fuente de iconos Material Symbols Outlined -->
+    
+    <!-- Enlace al archivo de estilos CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Enlace al archivo JavaScript principal, cargado al final para no bloquear el renderizado -->
     <script src="js/main.js" defer></script>
-
 </head>
-<body>
-    <header>
-        <div class = "container">
-            <div class = "logo">
-                <img src = "images/LogoVane.png" alt = "Logo de Vanessa Larrosa">
-            </div>
-            <nav>
-                <button class = "hamburger" id = "hamburger">
-                    <span class = "bar"></span>
-                    <span class = "bar"></span>
-                    <span class = "bar"></span>
-                </button>
-                <ul class=" nav-menu" id="nav-menu">
-                    <li><a href="#hero">Inicio</a></li>
-                    <li><a href="#about">Sobre mí</a></li>
-                    <li><a href="#projects">Proyectos</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-            </nav>
-        </div>  
 
+<body>
+    <!-- Encabezado principal -->
+    <header>
+        <div class="container"> <!-- Contenedor general del header -->
+            
+            <!-- Sección del logo -->
+            <div class="logo">
+                <img src="images/LogoVaneEscritorio.png" alt="Logo de Vanessa Larrosa" class="logo-img">
+                <div class="logo-text">VANESSA<br>LARROSA <!-- Nombre en dos líneas -->
+                </div>
+            </div>
+            
+            <!-- Controles de navegación (idioma y menú hamburguesa) -->
+            <div class="nav-controls">
+                
+                <!-- Selector de idioma -->
+                <div class="language-selector">
+                    <button class="lang-toggle" id="lang-toggle">
+                        <span class="lang-text">ES</span> <!-- Idioma actual -->
+                    </button>
+                </div>
+                
+                <!-- Botón de menú hamburguesa para móviles -->
+                <button class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+
+            <!-- Menú de navegación -->
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#about" data-key="nav-about">Sobre mí</a></li> <!-- Enlace a la sección "Sobre mí" -->
+                <li><a href="#projects" data-key="nav-projects">Proyectos</a></li> <!-- Enlace a la sección "Proyectos" -->
+                <li><a href="#contact" data-key="nav-contact">Contacto</a></li> <!-- Enlace a la sección "Contacto" -->
+            </ul>
+        </div>
     </header>
 
+    <!-- Contenido principal del sitio, provisional -->
     <main>
+    <!-- Sección Hero: la pantalla principal que ve el usuario al entrar -->
+    <section class="hero" id="hero">
+        <!-- Contenedor del contenido principal del hero -->
+        <div class="hero-content">
+            <!-- Título principal con degradado morado -->
+            <!-- data-key permite que el texto se traduzca automáticamente -->
+            <h1 class="hero-title" data-key="hero-title">DESARROLLADORA<br>DE SOFTWARE</h1>
+            
+            <!-- Subtítulo descriptivo sobre Vanessa -->
+            <!-- Se mantiene centrado y con ancho máximo para mejor legibilidad -->
+            <p class="hero-subtitle" data-key="hero-subtitle">
+                "Hola, soy Vanessa, graduada en DAM apasionada por el código, 
+                explorando frontend y backend para crear experiencias digitales completas."
+            </p>
+        </div>
+        
+        <!-- Indicador de scroll: texto + flecha animada -->
+        <!-- Al hacer clic, lleva automáticamente a la siguiente sección -->
+        <div class="scroll-indicator" id="scroll-indicator">
+            <!-- Texto que invita a hacer scroll -->
+            <span class="scroll-text" data-key="scroll-text">Scroll para explorar</span>
+            <!-- Flecha que palpita hacia abajo para mostrar movimiento -->
+            <span class="material-symbols-outlined scroll-arrow">arrow_forward</span> 
+        </div>
+    </section>
+</main>
 
-
-    </main>
-    
-
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="images/LogoVaneEscritorio.png" alt="Logo de Vanessa Larrosa" class="logo-img">
+            <div class="logo-text">VANESSA LARROSA</div>
+        </div>
+    </footer>
 </body>
 </html>
