@@ -12,7 +12,7 @@ Graduada en DAM, apasionada por el código y explorando frontend y backend para 
 - Git & GitHub
 
 ## 🌐 Demo
-[Ver portfolio en vivo](https://vanessalarrosadev.github.io/VanessaLarrosaDev/)
+[Ver portfolio en vivo](https://vanessalarrosadev.github.io/)
 
 ## 📱 Características
 - ✅ Mobile First
