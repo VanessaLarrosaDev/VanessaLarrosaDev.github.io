@@ -188,9 +188,46 @@ const cvConfig = {
 const aboutContainer = document.querySelector('.about-container');
 
 if (aboutContainer) {
-    aboutContainer.addEventListener('click', downloadCV);
+    // Función para detectar si el dispositivo es táctil
+    const isTouchDevice = () => {
+        return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    };
+
+    // Si es un dispositivo táctil (móvil), cambiamos la lógica del click
+    if (isTouchDevice()) {
+        let isActive = false;
+        
+        // Escuchador de eventos para el click (tap) en el contenedor "Sobre Mí"
+        aboutContainer.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita que el evento se propague a los elementos padres
+
+            // Si el efecto no está activo, lo activamos y descargamos el CV
+            if (!isActive) {
+                aboutContainer.classList.add('is-active');
+                downloadCV(); // Llama a tu función de descarga
+                isActive = true;
+            } else {
+                // Si ya estaba activo, lo desactivamos al hacer click de nuevo
+                aboutContainer.classList.remove('is-active');
+                isActive = false;
+            }
+        });
+        
+        // Escuchador de eventos para el documento completo
+        // Desactiva el efecto si se hace click fuera del contenedor
+        document.addEventListener('click', (e) => {
+            if (isActive && !aboutContainer.contains(e.target)) {
+                aboutContainer.classList.remove('is-active');
+                isActive = false;
+            }
+        });
+    } else {
+        // En escritorio (no táctil), el click solo descarga el CV, el efecto hover lo gestiona el CSS
+        aboutContainer.addEventListener('click', downloadCV);
+    }
 }
 
+// La función `downloadCV` y `showDownloadFeedback` se mantienen igual
 function downloadCV() {
     const link = document.createElement('a');
     link.href = `${cvConfig.path}${cvConfig.filename}`;
