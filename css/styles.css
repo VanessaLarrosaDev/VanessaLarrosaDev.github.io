@@ -633,18 +633,7 @@ SECCIÓN SOBRE MÍ
     50% { transform: scale(1.1); opacity: 0.8; }
 }
 
-/* Texto distinto según tamaño de pantalla */
-@media (max-width: 768px) {
-    .click-message::after {
-        content: "¡Tócame!";
-    }
-}
 
-@media (min-width: 769px) {
-    .click-message::after {
-        content: "¡Click aquí!";
-    }
-}
 
 .about-title {
     font-size: clamp(2rem, 6vw, 3rem); /* Título responsivo */
