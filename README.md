@@ -16,7 +16,7 @@ Graduada en DAM, apasionada por el código y explorando frontend y backend para 
 
 ## 📱 Características
 - ✅ Mobile First
-- ✅ Diseño minimalista con Tailwind
+- ✅ Diseño minimalista con HTML, CSS y JAVASCRIPT
 - ✅ Optimizado para todas las pantallas
 - ✅ Navegación intuitiva
 - ✅ Interacciones JavaScript
@@ -27,4 +27,4 @@ Graduada en DAM, apasionada por el código y explorando frontend y backend para 
 - **GitHub:** [@VanessaLarrosaDev](https://github.com/VanessaLarrosaDev)
 
 ---
-*Portfolio desarrollado con HTML5, Tailwind CSS y JavaScript* 🚀
+*Portfolio desarrollado con HTML5, CSS3 y JavaScript* 🚀
