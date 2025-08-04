@@ -575,3 +575,273 @@ RESPONSIVE HERO - ADAPTACIÓN A DIFERENTES PANTALLAS
         margin-bottom: 100px; /* Mucho más espacio inferior */
     }
 }
+
+/* =======================
+SECCIÓN SOBRE MÍ
+======================= */
+
+.about {
+    min-height: 100vh; /* Altura mínima de pantalla completa */
+    padding: 80px 20px 60px; /* Espaciado: arriba, laterales, abajo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Fondo negro consistente */
+    position: relative;
+    scroll-margin-top: 80px; /* Espacio para el header fijo al navegar */
+}
+
+.about-container {
+    max-width: 800px; /* Ancho máximo del contenido */
+    width: 100%;
+    text-align: left; /* Alineación a la izquierda como en Figma */
+    cursor: pointer; /* Indica que es clickeable */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave */
+    padding: 2rem 1rem; /* Espaciado interno */
+    border-radius: 15px; /* Esquinas redondeadas */
+    position: relative; /* Para el efecto de borde LED */
+    background: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de vidrio */
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Borde inicial transparente */
+    border: 2px solid transparent;
+    background-clip: padding-box; /* Para que el borde no interfiera */
+}
+
+.click-message {
+    position: absolute;
+    top: 90%;  /* A 80% desde la parte superior */
+    right: 15px;/* A 10px desde la derecha */
+    transform: translateY(-50%); /* centra verticalmente el texto respecto a ese punto */
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    animation: pulse 2.5s infinite;
+    z-index: 10;
+}
+
+/* Animación suave */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Texto distinto según tamaño de pantalla */
+@media (max-width: 768px) {
+    .click-message::after {
+        content: "¡Tócame!";
+    }
+}
+
+@media (min-width: 769px) {
+    .click-message::after {
+        content: "¡Click aquí!";
+    }
+}
+
+.about-title {
+    font-size: clamp(2rem, 6vw, 3rem); /* Título responsivo */
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: left;
+    margin-bottom: 1.5rem; /* Espacio debajo del título */
+    
+    /* Degradado morado consistente con el hero */
+    background-image: linear-gradient(90deg, #BB7EFB, #E8D9FB);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espacio entre párrafos */
+    text-align: left; /* Alineación a la izquierda */
+}
+
+.about-text {
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Tamaño responsivo */
+    font-weight: 300;
+    line-height: 1.7; /* Altura de línea cómoda para lectura */
+    color: rgba(255, 255, 255, 0.85); /* Blanco con ligera transparencia */
+    margin: 0; /* Sin márgenes por defecto */
+    
+    /* Animación de entrada escalonada */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Animaciones escalonadas para cada párrafo */
+.about-text:nth-child(1) {
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+}
+
+.about-text:nth-child(2) {
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+}
+
+.about-text:nth-child(3) {
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+}
+
+.about-text:nth-child(4) {
+    animation: fadeInUp 1s ease-out 0.8s forwards;
+}
+
+/* =======================
+RESPONSIVE - TABLET Y ESCRITORIO apartado Sobre Mí
+======================= */
+
+/* Para tablets (768px en adelante) */
+@media (min-width: 768px) {
+    .about {
+        padding: 100px 40px 80px;
+        scroll-margin-top: 90px; /* Más espacio para headers más grandes */
+    }
+    
+    .about-container {
+        margin-left: 10vw;
+        margin-right: auto;
+        max-width: 700px;
+        padding: 4rem 2rem;
+    }
+    
+    .about-title {
+        margin-bottom: 50px;
+        font-size: 2.5rem; /* Título más grande en tablet */
+    }
+    
+    .about-content {
+        gap: 28px; /* Más espacio entre párrafos */
+    }
+    
+    .about-text {
+        font-size: 1.15rem; /* Texto ligeramente más grande */
+        line-height: 1.8;
+    }
+}
+
+/* Para escritorio (1024px en adelante) */
+@media (min-width: 1024px) {
+    .about {
+        padding: 120px 40px 100px;
+        scroll-margin-top: 100px; /* Máximo espacio para header */
+    }
+    
+    .about-container {
+        max-width: 900px; /* Contenedor más ancho en escritorio */
+        padding: 50px; /* Máximo espaciado interno */
+    }
+    
+    .about-title {
+        margin-bottom: 60px;
+        font-size: 3rem; /* Título aún más grande */
+    }
+    
+    .about-content {
+        gap: 32px; /* Máximo espacio entre párrafos */
+    }
+    
+    .about-text {
+        font-size: 1.2rem; /* Texto más grande para mejor legibilidad */
+        line-height: 1.8;
+        max-width: 850px; /* Limita el ancho para mejor legibilidad */
+    }
+}
+
+/* =======================
+EFECTOS HOVER Y CLICK SOBRE MÍ
+======================= */
+
+/* Solo activar efectos hover en dispositivos que los soporten (no móvil) */
+@media (hover: hover) and (pointer: fine) {
+    .about-container:hover {
+        transform: scale(1.02); /* Zoom sutil */
+        
+        /* Borde LED morado animado */
+        border: 2px solid #BB7EFB;
+        box-shadow: 
+            0 0 20px rgba(187, 126, 251, 0.4),
+            0 0 40px rgba(187, 126, 251, 0.2),
+            0 0 60px rgba(187, 126, 251, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Brillo interno sutil */
+        
+        /* Mejora el backdrop blur al hacer hover */
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+    }
+    
+    .about-container:hover .about-title {
+        /* Intensifica el degradado del título al hacer hover */
+        background-image: linear-gradient(90deg, #BB7EFB, #E8D9FB, #BB7EFB);
+        background-size: 200% 200%;
+        animation: shimmer 2s ease-in-out infinite;
+    }
+    
+    .about-container:hover .about-text {
+        color: rgba(255, 255, 255, 0.95); /* Texto más brillante */
+    }
+}
+
+/* Efecto de click (activo) */
+.about-container:active {
+    transform: scale(0.98); /* Pequeña reducción al hacer click */
+    transition: transform 0.1s ease;
+}
+
+/* Animación del borde LED pulsante */
+@keyframes ledPulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(187, 126, 251, 0.4),
+            0 0 40px rgba(187, 126, 251, 0.2),
+            0 0 60px rgba(187, 126, 251, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 25px rgba(187, 126, 251, 0.6),
+            0 0 50px rgba(187, 126, 251, 0.3),
+            0 0 75px rgba(187, 126, 251, 0.15);
+    }
+}
+
+/* Aplicar animación LED al hacer hover */
+@media (hover: hover) and (pointer: fine) {
+    .about-container:hover {
+        animation: ledPulse 2s ease-in-out infinite;
+    }
+}
+
+/* Esta clase se añadirá con JavaScript cuando la sección sea visible */
+.about.in-view .about-title {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.about.in-view .about-text:nth-child(1) {
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+}
+
+.about.in-view .about-text:nth-child(2) {
+    animation: fadeInUp 1s ease-out 0.4s forwards;
+}
+
+.about.in-view .about-text:nth-child(3) {
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+}
+
+.about.in-view .about-text:nth-child(4) {
+    animation: fadeInUp 1s ease-out 0.8s forwards;
+}

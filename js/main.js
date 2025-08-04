@@ -254,3 +254,197 @@ function updateTexts(lang) {
         }
     });
 }
+
+// ================================
+// NAVEGACIÓN SUAVE A LA SECCIÓN SOBRE MÍ
+// ================================
+
+// Función para navegación suave
+function smoothScrollToSection(targetId) {
+    const target = document.querySelector(targetId);
+    if (target) {
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Inicializar navegación cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    // Buscar todos los enlaces que apuntan a #about
+    const aboutLinks = document.querySelectorAll('a[href="#about"]');
+    
+    aboutLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevenir comportamiento por defecto
+            smoothScrollToSection('#about');
+            
+            // En móvil, cerrar el menú si está abierto
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            if (hamburger && navMenu) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+            
+            // Actualizar navegación activa
+            document.querySelectorAll('.nav-menu a').forEach(navLink => {
+                navLink.classList.remove('active');
+            });
+            link.classList.add('active');
+        });
+    });
+});
+
+// ================================
+// FUNCIONALIDAD DE DESCARGA DE CV
+// ================================
+
+// Configuración del archivo CV
+const cvConfig = {
+    filename: 'CV Vanessa Larrosa Vilar.pdf', // Nombre del archivo
+    path: 'assets/cv/', // Ruta donde está el CV (ajustar según tu estructura)
+};
+
+// Función para descargar el CV
+function downloadCV() {
+    // Crear elemento de descarga temporal
+    const link = document.createElement('a');
+    link.href = `${cvConfig.path}${cvConfig.filename}`;
+    link.download = cvConfig.filename;
+    link.target = '_blank'; // Abrir en nueva pestaña como fallback
+    
+    // Añadir al DOM temporalmente y hacer click
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Feedback visual opcional
+    showDownloadFeedback();
+}
+
+// Feedback visual de descarga
+function showDownloadFeedback() {
+    const aboutContainer = document.querySelector('.about-container');
+    if (aboutContainer) {
+        // Crear elemento de feedback
+        const feedback = document.createElement('div');
+        feedback.textContent = currentLang === 'es' ? '¡CV descargándose!' : 'CV downloading!';
+        feedback.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(187, 126, 251, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 100;
+            pointer-events: none;
+            animation: fadeInOut 2s ease-in-out forwards;
+        `;
+        
+        // Añadir animación CSS
+        if (!document.querySelector('#download-feedback-styles')) {
+            const style = document.createElement('style');
+            style.id = 'download-feedback-styles';
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    20%, 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        aboutContainer.style.position = 'relative';
+        aboutContainer.appendChild(feedback);
+        
+        // Remover feedback después de la animación
+        setTimeout(() => {
+            if (feedback.parentNode) {
+                feedback.parentNode.removeChild(feedback);
+            }
+        }, 2000);
+    }
+}
+
+// Inicializar funcionalidad de descarga
+document.addEventListener('DOMContentLoaded', () => {
+    const aboutContainer = document.querySelector('.about-container');
+    if (aboutContainer) {
+        aboutContainer.addEventListener('click', downloadCV);
+        
+        // Actualizar tooltip según idioma
+        function updateTooltipLanguage() {
+            aboutContainer.setAttribute('data-lang', currentLang);
+        }
+        
+        // Actualizar tooltip inicial
+        updateTooltipLanguage();
+        
+        // Escuchar cambios de idioma
+        const langToggle = document.getElementById('lang-toggle');
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                setTimeout(updateTooltipLanguage, 100); // Pequeño delay para que currentLang se actualice
+            });
+        }
+    }
+});
+
+// ================================
+// INTERSECTION OBSERVER PARA ANIMACIONES DE LA SECCIÓN SOBRE MÍ
+// ================================
+
+// Configuración del observer para detectar cuando la sección es visible
+const observerOptions = {
+    threshold: 0.3, // Se activa cuando el 30% de la sección es visible
+    rootMargin: '0px 0px -50px 0px' // Margen inferior para activar un poco antes
+};
+
+// Crear el observer
+const aboutObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Añadir clase para activar animaciones
+            entry.target.classList.add('in-view');
+            
+            // Opcional: dejar de observar una vez que se ha animado
+            aboutObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Inicializar observer cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    const aboutSection = document.querySelector('.about');
+    if (aboutSection) {
+        aboutObserver.observe(aboutSection);
+    }
+});
+
+// ================================
+// TRADUCCIONES PARA LA SECCIÓN SOBRE MÍ
+// ================================
+
+// Añadir traducciones al objeto existente
+Object.assign(translations.es, {
+    "about-title": "SOBRE MÍ",
+    "about-text-1": "Combino mi pasión por el código con una curiosidad infinita por aprender.",
+    "about-text-2": "Desde Unity hasta backend, disfruto explorando diferentes tecnologías y creando proyectos que resuelvan problemas reales.",
+    "about-text-3": "Mi experiencia como profesora me dio una perspectiva única: la paciencia para debuggear y la creatividad para encontrar soluciones elegantes.",
+    "about-text-4": "Siempre hay algo nuevo que descubrir en este mundo del desarrollo."
+});
+
+Object.assign(translations.en, {
+    "about-title": "ABOUT ME",
+    "about-text-1": "I combine my passion for code with an infinite curiosity to learn.",
+    "about-text-2": "From Unity to backend, I enjoy exploring different technologies and creating projects that solve real problems.",
+    "about-text-3": "My experience as a teacher gave me a unique perspective: the patience to debug and the creativity to find elegant solutions.",
+    "about-text-4": "There's always something new to discover in this world of development."
+});
