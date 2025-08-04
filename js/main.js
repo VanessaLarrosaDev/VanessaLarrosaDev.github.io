@@ -182,7 +182,7 @@ if (window.innerWidth > 768) {
 // ================================
 const cvConfig = {
     filename: 'CV Vanessa Larrosa Vilar.pdf',
-    path: 'assets/CV/'
+    path: 'assets/cv/'
 };
 
 const aboutContainer = document.querySelector('.about-container');
