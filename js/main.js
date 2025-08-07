@@ -30,6 +30,9 @@ const translations = {
         "nav-about": "Sobre mí",
         "nav-projects": "Proyectos",
         "nav-contact": "Contacto",
+        "nav-about-mobile": "Sobre mí", // Nueva clave para el menú móvil
+        "nav-projects-mobile": "Proyectos", // Nueva clave para el menú móvil
+        "nav-contact-mobile": "Contacto", // Nueva clave para el menú móvil
         "hero-title": "DESARROLLADORA<br>DE SOFTWARE",
         "hero-subtitle": '"Hola, soy Vanessa, graduada en DAM apasionada por el código, explorando frontend y backend para crear experiencias digitales completas."',
         "scroll-text": "Scroll para explorar",
@@ -53,12 +56,23 @@ const translations = {
         "project-3-tags": "[ Tags: Próximamente, Tech3 ]",
         "project-4-title": "**PROYECTO EN DESARROLLO 4**",
         "project-4-description": "Aquí irá la descripción de un emocionante proyecto en el que estoy trabajando o que está planificado, mostrando mis habilidades.",
-        "project-4-tags": "[ Tags: Próximamente, Tech4 ]"
+        "project-4-tags": "[ Tags: Próximamente, Tech4 ]",
+        "contact-title": "CONTACTAR",
+        "contact-linkedin": "LinkedIn",
+        "contact-github": "GitHub",
+        "contact-email": "vanessalarrosadev@gmail.com",
+        "brand-text": "VANESSA LARROSA",
+        // Mensajes de feedback
+        "email-copied": "¡Email copiado al portapapeles!",
+        "link-opening": "Abriendo enlace...",
     },
     en: {
         "nav-about": "About Me",
         "nav-projects": "Projects",
         "nav-contact": "Contact",
+        "nav-about-mobile": "About Me", // Nueva clave para el menú móvil
+        "nav-projects-mobile": "Projects", // Nueva clave para el menú móvil
+        "nav-contact-mobile": "Contact", // Nueva clave para el menú móvil
         "hero-title": "SOFTWARE<br>DEVELOPER",
         "hero-subtitle": '"Hi, I\'m Vanessa, a DAM graduate passionate about code, exploring frontend and backend to create complete digital experiences."',
         "scroll-text": "Scroll to explore",
@@ -82,7 +96,14 @@ const translations = {
         "project-3-tags": "[ Tags: Coming Soon, Tech3 ]",
         "project-4-title": "**PROJECT IN DEVELOPMENT 4**",
         "project-4-description": "Here will go the description of an exciting project I'm working on or that is planned, showing my skills.",
-        "project-4-tags": "[ Tags: Coming Soon, Tech4 ]"
+        "project-4-tags": "[ Tags: Coming Soon, Tech4 ]",
+        "contact-title": "CONTACT",
+        "contact-linkedin": "LinkedIn",
+        "contact-github": "GitHub",
+        "contact-email": "vanessalarrosadev@gmail.com",
+        "brand-text": "VANESSA LARROSA",
+        "email-copied": "Email copied to clipboard!",
+        "link-opening": "Opening link...",
     }
 };
 
@@ -128,7 +149,7 @@ function initHeaderScroll() {
     
     // Si no existe el header, salir de la función
     if (!header) return;
-    
+
     // Evento para detectar el scroll de la ventana
     window.addEventListener('scroll', () => {
         // Obtiene la posición actual del scroll
@@ -157,28 +178,27 @@ function initHeaderScroll() {
 function initHamburgerMenu() {
     // Selecciona el icono del menú hamburguesa
     const hamburger = document.getElementById('hamburger');
-    // Selecciona el menú de navegación
-    const navMenu = document.getElementById('nav-menu');
-    // Selecciona todos los enlaces de la navegación
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    // Selecciona el menú de navegación móvil por su ID
+    const navMenu = document.getElementById('nav-menu-mobile');
+    // Selecciona todos los enlaces de la navegación móvil
+    const navLinks = document.querySelectorAll('#nav-menu-mobile a');
     
     // Si no existen los elementos necesarios, salir de la función
     if (!hamburger || !navMenu) return;
-    
+
     // Evento para abrir/cerrar menú hamburguesa cuando se hace clic en el icono
     hamburger.addEventListener('click', () => {
         // Alterna la clase 'active' en el icono hamburguesa
         hamburger.classList.toggle('active');
-        // Alterna la clase 'active' en el menú de navegación
+        // Alterna la clase 'active' en el menú de navegación móvil
         navMenu.classList.toggle('active');
     });
-    
-    // Cierra el menú al hacer clic en algún enlace (solo en modo móvil/tablet)
+
+    // Cierra el menú al hacer clic en un enlace del menú móvil
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
-            // Solo cerrar si es tablet/móvil (ancho menor o igual a 1023px)
             if (isTabletOrMobile()) {
-                // Espera un poco para que se note el feedback visual
+                // Espera un poco para que la navegación sea más fluida antes de cerrar
                 setTimeout(() => {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
@@ -186,11 +206,11 @@ function initHamburgerMenu() {
             }
         });
     });
-    
-    // Cierra el menú si haces clic fuera del menú o del icono hamburguesa
+
+    // Cierra el menú si haces clic fuera de él o del icono
     document.addEventListener('click', (e) => {
-        // Verifica que el clic no sea en el hamburger ni en el menú
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        // Solo cierra si el menú está activo y el clic fue fuera del botón y del menú
+        if (hamburger.classList.contains('active') && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }
@@ -208,27 +228,33 @@ function initHamburgerMenu() {
 function updateTexts(lang) {
     // Selecciona todos los elementos que tienen el atributo data-key
     const elements = document.querySelectorAll('[data-key]');
-    
+
     // Recorre cada elemento traducible
     elements.forEach(el => {
         // Obtiene la clave de traducción del elemento
         const key = el.getAttribute('data-key');
         
-        // Caso especial: mensaje de click que cambia según el dispositivo
-        if (key === 'about-click-message') {
-            // Determina si es móvil para mostrar el texto apropiado
-            const clickKey = isMobile() ? 'about-click-mobile' : 'about-click-desktop';
-            el.textContent = translations[lang][clickKey];
-        }
-        // Caso especial: título de hero que usa innerHTML para permitir saltos de línea
-        else if (key === 'hero-title') {
-            el.innerHTML = translations[lang][key];
-        }
-        // Resto de elementos: solo texto normal
-        else if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
+        // Verifica si la clave existe para el idioma actual
+        if (translations[lang] && translations[lang][key]) {
+             // Si el elemento es el título del hero, permite HTML (para <br>)
+            if (key === 'hero-title') {
+                el.innerHTML = translations[lang][key];
+            } else {
+                el.textContent = translations[lang][key];
+            }
         }
     });
+
+    // Función interna para actualizar tooltips del email
+    function updateContactTranslations(lang) {
+        const emailLink = document.querySelector('.contact-email');
+        if (emailLink) {
+            const tooltipText = lang === 'es' ? 'Hacer clic para copiar email' : 'Click to copy email';
+            emailLink.setAttribute('title', tooltipText);
+        }
+    }
+    // Llama a la función interna
+    updateContactTranslations(lang);
 }
 
 /**
@@ -238,12 +264,12 @@ function updateTexts(lang) {
 function updateLanguageButtons(selectedLang) {
     // Selecciona todos los botones de idioma
     const langButtons = document.querySelectorAll('.lang-btn');
-    
+
     // Recorre cada botón de idioma
     langButtons.forEach(btn => {
         // Obtiene el idioma asociado al botón
         const btnLang = btn.getAttribute('data-lang');
-        
+
         // Si es el idioma seleccionado, añade la clase 'active'
         if (btnLang === selectedLang) {
             btn.classList.add('active');
@@ -260,13 +286,13 @@ function updateLanguageButtons(selectedLang) {
 function initLanguageToggle() {
     // Selecciona todos los botones de idioma
     const langButtons = document.querySelectorAll('.lang-btn');
-    
+
     // Asocia el evento de cambio de idioma a cada botón
     langButtons.forEach(button => {
         button.addEventListener('click', () => {
             // Obtiene el nuevo idioma del atributo data-lang
             const newLang = button.getAttribute('data-lang');
-            
+
             // Solo cambia si es diferente al idioma actual
             if (newLang !== currentLang) {
                 // Actualiza el idioma actual
@@ -281,7 +307,7 @@ function initLanguageToggle() {
 }
 
 // ================================
-// NAVEGACIÓN ACTIVA EN EL MENÚ
+// NAVEGACIÓN ACTIVA Y SMOOTH SCROLL
 // ================================
 
 /**
@@ -290,8 +316,8 @@ function initLanguageToggle() {
 function initActiveNavigation() {
     // Selecciona todas las secciones que tienen ID
     const sections = document.querySelectorAll('section[id]');
-    // Selecciona todos los enlaces de navegación que tienen data-section
-    const navLinks = document.querySelectorAll('.nav-menu a[data-section]');
+    // Selecciona todos los enlaces de navegación de ambos menús
+    const allNavLinks = document.querySelectorAll('.desktop-menu a[data-section], .mobile-menu a[data-section]');
     
     /**
      * Actualiza el enlace activo basado en la posición del scroll
@@ -305,65 +331,35 @@ function initActiveNavigation() {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            
-            // Si el scroll está dentro de esta sección
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('id');
             }
         });
-        
-        // Actualiza las clases activas en los enlaces
-        navLinks.forEach(link => {
-            // Quita la clase active de todos los enlaces
+
+        // Actualiza las clases activas en todos los enlaces
+        allNavLinks.forEach(link => {
             link.classList.remove('active');
-            // Añade la clase active al enlace de la sección actual
             if (link.getAttribute('data-section') === currentSection) {
                 link.classList.add('active');
             }
         });
     }
-    
-    // Ejecuta la función al hacer scroll
+
+    // Ejecuta la función al hacer scroll y al cargar la página
     window.addEventListener('scroll', updateActiveLink);
-    
-    // Ejecuta la función al cargar la página
     updateActiveLink();
     
-    // Implementa smooth scroll para los enlaces de navegación
-    navLinks.forEach(link => {
+    // Implementa smooth scroll para todos los enlaces
+    allNavLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Previene el comportamiento por defecto del enlace
             e.preventDefault();
-            
-            // Obtiene el ID de la sección objetivo
             const targetId = this.getAttribute('data-section');
             const targetSection = document.getElementById(targetId);
-            
-            // Si existe la sección objetivo
             if (targetSection) {
-                // Calcula la altura del header para el offset
                 const header = document.querySelector('header');
                 const headerHeight = header ? header.offsetHeight : 0;
-                // Calcula la posición objetivo menos la altura del header
                 const targetPosition = targetSection.offsetTop - headerHeight;
-                
-                // Realiza el scroll suave
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Cierra el menú móvil si está abierto
-                if (isTabletOrMobile()) {
-                    const hamburger = document.getElementById('hamburger');
-                    const navMenu = document.getElementById('nav-menu');
-                    
-                    // Espera un poco antes de cerrar para mejor UX
-                    setTimeout(() => {
-                        if (hamburger) hamburger.classList.remove('active');
-                        if (navMenu) navMenu.classList.remove('active');
-                    }, 300);
-                }
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             }
         });
     });
@@ -379,14 +375,9 @@ function initActiveNavigation() {
 function initScrollIndicator() {
     // Selecciona el indicador de scroll
     const scrollIndicator = document.getElementById('scroll-indicator');
-    
-    // Si existe el indicador
     if (scrollIndicator) {
         scrollIndicator.addEventListener('click', () => {
-            // Busca la sección "about"
             const aboutSection = document.getElementById('about');
-            
-            // Si existe, hace scroll suave hacia ella
             if (aboutSection) {
                 aboutSection.scrollIntoView({ behavior: 'smooth' });
             }
@@ -398,20 +389,11 @@ function initScrollIndicator() {
  * Inicializa el efecto parallax en la sección hero (solo en escritorio)
  */
 function initParallaxEffect() {
-    // Solo aplica parallax en pantallas grandes
     if (!isMobile()) {
-        /**
-         * Actualiza el efecto parallax basado en el scroll
-         */
         function updateParallax() {
-            // Obtiene la posición actual del scroll
             const scrolled = window.pageYOffset;
-            // Selecciona el elemento hero
             const hero = document.querySelector('.hero');
-            // Velocidad del efecto parallax (más bajo = más lento)
             const parallaxSpeed = 0.5;
-            
-            // Si existe el elemento hero, aplica la transformación
             if (hero) {
                 hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
             }
@@ -432,23 +414,13 @@ function initParallaxEffect() {
  * Realiza la descarga del CV
  */
 function downloadCV() {
-    // Crea un elemento <a> temporal para la descarga
     const link = document.createElement('a');
-    // Establece la ruta del archivo
     link.href = `${cvConfig.path}${cvConfig.filename}`;
-    // Establece el nombre de descarga
     link.download = cvConfig.filename;
-    // Abre en nueva pestaña como respaldo
     link.target = '_blank';
-    
-    // Añade el enlace al DOM temporalmente
     document.body.appendChild(link);
-    // Simula el clic para iniciar la descarga
     link.click();
-    // Remueve el enlace del DOM
     document.body.removeChild(link);
-    
-    // Muestra feedback visual de la descarga
     showDownloadFeedback();
 }
 
@@ -456,15 +428,10 @@ function downloadCV() {
  * Muestra un feedback visual cuando se descarga el CV
  */
 function showDownloadFeedback() {
-    // Obtiene el contenedor de la sección about
     const aboutContainer = document.querySelector('.about-container');
     if (!aboutContainer) return;
-    
-    // Crea el elemento de feedback
     const feedback = document.createElement('div');
     feedback.textContent = translations[currentLang]['download-feedback'];
-    
-    // Aplica estilos inline al elemento de feedback
     feedback.style.cssText = `
         position: absolute;
         top: 50%;
@@ -480,27 +447,14 @@ function showDownloadFeedback() {
         pointer-events: none;
         animation: fadeInOut 2s ease-in-out forwards;
     `;
-    
-    // Añade estilos CSS para la animación si no existen
     if (!document.querySelector('#download-feedback-styles')) {
         const style = document.createElement('style');
         style.id = 'download-feedback-styles';
-        style.textContent = `
-            @keyframes fadeInOut {
-                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-                20%, 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            }
-        `;
+        style.textContent = `@keyframes fadeInOut { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } 20%, 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } }`;
         document.head.appendChild(style);
     }
-    
-    // Establece posición relativa en el contenedor para el posicionamiento absoluto
     aboutContainer.style.position = 'relative';
-    // Añade el feedback al contenedor
     aboutContainer.appendChild(feedback);
-    
-    // Remueve el feedback después de 2 segundos
     setTimeout(() => {
         if (feedback.parentNode) {
             feedback.parentNode.removeChild(feedback);
@@ -512,31 +466,21 @@ function showDownloadFeedback() {
  * Inicializa la funcionalidad de descarga del CV
  */
 function initCVDownload() {
-    // Selecciona el contenedor de la sección about
     const aboutContainer = document.querySelector('.about-container');
     if (!aboutContainer) return;
-    
-    // Comportamiento diferente para dispositivos táctiles
     if (isTouchDevice()) {
         let isActive = false;
-        
-        // En dispositivos táctiles, alterna estado activo
         aboutContainer.addEventListener('click', (e) => {
             e.stopPropagation();
-            
             if (!isActive) {
-                // Activa el estado y descarga
                 aboutContainer.classList.add('is-active');
                 downloadCV();
                 isActive = true;
             } else {
-                // Desactiva el estado
                 aboutContainer.classList.remove('is-active');
                 isActive = false;
             }
         });
-        
-        // Desactiva si se hace clic fuera del contenedor
         document.addEventListener('click', (e) => {
             if (isActive && !aboutContainer.contains(e.target)) {
                 aboutContainer.classList.remove('is-active');
@@ -544,7 +488,6 @@ function initCVDownload() {
             }
         });
     } else {
-        // En dispositivos no táctiles, descarga directamente al hacer clic
         aboutContainer.addEventListener('click', downloadCV);
     }
 }
@@ -557,67 +500,76 @@ function initCVDownload() {
  * Inicializa los observadores de intersección para animaciones de entrada
  */
 function initIntersectionObservers() {
-    // Observer para la sección about
     const aboutObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Si el elemento entra en la vista
             if (entry.isIntersecting) {
-                // Añade la clase para activar la animación
                 entry.target.classList.add('in-view');
-                // Deja de observar este elemento (animación única)
                 aboutObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
-    
-    // Observer para la sección de proyectos
+
     const projectsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Si el elemento entra en la vista
             if (entry.isIntersecting) {
-                // Añade la clase para activar la animación
                 entry.target.classList.add('in-view');
-                // Deja de observar este elemento (animación única)
                 projectsObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
-    
-    // Observa la sección about si existe
+
+    const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                startContactAnimations();
+                contactObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+
     const aboutSection = document.querySelector('.about');
     if (aboutSection) {
         aboutObserver.observe(aboutSection);
     }
-    
-    // Observa la sección de proyectos si existe
     const projectsSection = document.querySelector('.projects');
     if (projectsSection) {
         projectsObserver.observe(projectsSection);
     }
+    const contactSection = document.querySelector('.contact');
+    if (contactSection) {
+        contactObserver.observe(contactSection);
+    }
 }
 
-// ================================
-// FUNCIONALIDAD DE LAS TARJETAS DE PROYECTO
-// ================================
+function startContactAnimations() {
+    const imageContainer = document.querySelector('.image-container');
+    if (imageContainer && !isMobile()) {
+        imageContainer.style.animation = 'floatImage 6s ease-in-out infinite';
+    }
+    const contactLinks = document.querySelectorAll('.contact-link');
+    contactLinks.forEach((link, index) => {
+        setTimeout(() => {
+            link.style.opacity = '1';
+            link.style.transform = 'translateX(0)';
+        }, 300 + (index * 150));
+    });
+    const socialIcons = document.querySelectorAll('.social-icon');
+    socialIcons.forEach((icon, index) => {
+        setTimeout(() => {
+            icon.style.opacity = '1';
+            icon.style.transform = 'scale(1)';
+        }, 800 + (index * 100));
+    });
+}
 
-/**
- * Inicializa la funcionalidad de las tarjetas de proyecto en dispositivos táctiles
- */
 function initProjectCards() {
-    // Selecciona todas las tarjetas de proyecto
     const projectCards = document.querySelectorAll('.project-card');
-    
-    // Solo en dispositivos táctiles
     if (projectCards.length > 0 && isTouchDevice()) {
-        // Añade funcionalidad de toggle a cada tarjeta
         projectCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
-                
-                // Alterna el estado activo de la tarjeta actual
                 card.classList.toggle('is-active');
-                
-                // Si se activa esta tarjeta, desactiva las demás
                 if (card.classList.contains('is-active')) {
                     projectCards.forEach(otherCard => {
                         if (otherCard !== card) {
@@ -627,8 +579,6 @@ function initProjectCards() {
                 }
             });
         });
-        
-        // Desactiva todas las tarjetas si se hace clic fuera
         document.addEventListener('click', (e) => {
             projectCards.forEach(card => {
                 if (!card.contains(e.target)) {
@@ -639,19 +589,9 @@ function initProjectCards() {
     }
 }
 
-// ================================
-// UTILIDADES PARA MÓVIL
-// ================================
-
-/**
- * Elimina estados hover persistentes en dispositivos móviles
- */
 function initMobileTouchFixes() {
-    // Elimina el estado :active después de touch
     document.addEventListener('touchend', () => {
-        // Solo en dispositivos táctiles
         if ('ontouchstart' in window) {
-            // Quita el foco del elemento activo para eliminar estados hover persistentes
             if (document.activeElement) {
                 document.activeElement.blur();
             }
@@ -659,19 +599,168 @@ function initMobileTouchFixes() {
     });
 }
 
-// ================================
-// INICIALIZACIÓN PRINCIPAL
-// ================================
+async function copyToClipboard(text) {
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+        } else {
+            return fallbackCopyTextToClipboard(text);
+        }
+    } catch (err) {
+        console.error('Error al copiar al portapapeles: ', err);
+        return false;
+    }
+}
 
-/**
- * Inicializa todas las funcionalidades cuando el DOM está listo
- */
+function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        return successful;
+    } catch (err) {
+        console.error('Error en fallback de copiado: ', err);
+        document.body.removeChild(textArea);
+        return false;
+    }
+}
+
+function showCopyFeedback(element, message) {
+    const feedback = document.createElement('div');
+    feedback.textContent = message;
+    feedback.className = 'copy-feedback';
+    feedback.style.cssText = `position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(40, 167, 69, 0.95); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; z-index: 1000; pointer-events: none; white-space: nowrap; animation: copyFeedbackAnimation 2s ease-in-out forwards;`;
+    if (!document.querySelector('#copy-feedback-styles')) {
+        const style = document.createElement('style');
+        style.id = 'copy-feedback-styles';
+        style.textContent = `@keyframes copyFeedbackAnimation { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } 20%, 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } }`;
+        document.head.appendChild(style);
+    }
+    element.style.position = 'relative';
+    element.appendChild(feedback);
+    setTimeout(() => {
+        if (feedback.parentNode) {
+            feedback.parentNode.removeChild(feedback);
+        }
+    }, 2000);
+}
+
+function handleExternalLink(event, element, url) {
+    event.preventDefault();
+    const feedbackMsg = translations[currentLang]['link-opening'] || 'Opening link...';
+    showLinkFeedback(element, feedbackMsg);
+    setTimeout(() => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }, 500);
+}
+
+function showLinkFeedback(element, message) {
+    const feedback = document.createElement('div');
+    feedback.textContent = message;
+    feedback.className = 'link-feedback';
+    feedback.style.cssText = `position: absolute; top: 50%; right: 0; transform: translateY(-50%); background: rgba(54, 162, 235, 0.95); color: white; padding: 6px 12px; border-radius: 15px; font-size: 11px; font-weight: 500; z-index: 1000; pointer-events: none; white-space: nowrap; animation: linkFeedbackAnimation 1.5s ease-in-out forwards;`;
+    if (!document.querySelector('#link-feedback-styles')) {
+        const style = document.createElement('style');
+        style.id = 'link-feedback-styles';
+        style.textContent = `@keyframes linkFeedbackAnimation { 0% { opacity: 0; transform: translateY(-50%) translateX(10px); } 30%, 70% { opacity: 1; transform: translateY(-50%) translateX(0); } 100% { opacity: 0; transform: translateY(-50%) translateX(-10px); } }`;
+        document.head.appendChild(style);
+    }
+    element.style.position = 'relative';
+    element.appendChild(feedback);
+    setTimeout(() => {
+        if (feedback.parentNode) {
+            feedback.parentNode.removeChild(feedback);
+        }
+    }, 1500);
+}
+
+function initImageParallax() {
+    const profileImage = document.querySelector('.profile-image');
+    const imageContainer = document.querySelector('.image-container');
+    if (!profileImage || !imageContainer || isMobile()) return;
+    function updateImageParallax(e) {
+        const rect = imageContainer.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - centerX) / rect.width;
+        const deltaY = (e.clientY - centerY) / rect.height;
+        const rotateX = deltaY * -5;
+        const rotateY = deltaX * 5;
+        const translateZ = Math.abs(deltaX + deltaY) * 10;
+        profileImage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${translateZ}px)`;
+        const imageShadow = document.querySelector('.image-shadow');
+        if (imageShadow) {
+            imageShadow.style.transform = `translate(${20 - deltaX * 10}px, ${20 - deltaY * 10}px) scale(${1 + Math.abs(deltaX + deltaY) * 0.05})`;
+        }
+    }
+    function resetImageParallax() {
+        profileImage.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        const imageShadow = document.querySelector('.image-shadow');
+        if (imageShadow) {
+            imageShadow.style.transform = 'translate(20px, 20px) scale(1)';
+        }
+    }
+    imageContainer.addEventListener('mousemove', updateImageParallax);
+    imageContainer.addEventListener('mouseleave', resetImageParallax);
+}
+
+function initContactSection() {
+    initIntersectionObservers();
+    initImageParallax();
+    const emailLink = document.querySelector('.contact-email');
+    if (emailLink) {
+        emailLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = emailLink.querySelector('.link-text').textContent;
+            const copied = await copyToClipboard(email);
+            if (copied) {
+                const message = translations[currentLang]['email-copied'] || 'Email copied!';
+                showCopyFeedback(emailLink, message);
+            } else {
+                window.location.href = `mailto:${email}`;
+            }
+        });
+        emailLink.setAttribute('title', 'Hacer clic para copiar email');
+        emailLink.style.cursor = 'copy';
+    }
+    const externalLinks = document.querySelectorAll('.contact-link:not(.contact-email), .social-icon');
+    externalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const url = link.getAttribute('href');
+            if (url && (url.includes('linkedin.com') || url.includes('github.com'))) {
+                handleExternalLink(e, link, url);
+            }
+        });
+    });
+    setupInitialContactStyles();
+}
+
+function setupInitialContactStyles() {
+    const elementsToHide = document.querySelectorAll('.contact-link, .social-icon');
+    elementsToHide.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateX(-20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    const socialIcons = document.querySelectorAll('.social-icon');
+    socialIcons.forEach(icon => {
+        icon.style.transform = 'scale(0.8)';
+        icon.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+}
+
 function initializeApp() {
-    // Inicializa los textos y botones de idioma con el idioma por defecto
     updateTexts(currentLang);
     updateLanguageButtons(currentLang);
-    
-    // Inicializa todas las funcionalidades
     initHeaderScroll();
     initHamburgerMenu();
     initLanguageToggle();
@@ -682,22 +771,12 @@ function initializeApp() {
     initIntersectionObservers();
     initProjectCards();
     initMobileTouchFixes();
+    initContactSection();
 }
 
-/**
- * Maneja el redimensionamiento de la ventana
- */
 function handleResize() {
-    // Actualiza los textos (importante para mensajes que cambian según dispositivo)
     updateTexts(currentLang);
 }
 
-// ================================
-// EVENTOS PRINCIPALES
-// ================================
-
-// Inicializa la aplicación cuando el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', initializeApp);
-
-// Maneja el redimensionamiento de la ventana
 window.addEventListener('resize', handleResize);

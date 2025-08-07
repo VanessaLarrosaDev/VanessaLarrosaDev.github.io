@@ -1,99 +1,75 @@
-<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
-<html lang="es"> <!-- Indica que el idioma principal de la página es español -->
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Hace que la página sea responsive en móviles -->
-
-    <title>Portfolio Vanessa Larrosa</title> <!-- Título de la pestaña del navegador -->
-
-    <!-- Carga una fuente de iconos de Google Fonts llamada Material Symbols Outlined -->
+    <title>Portfolio Vanessa Larrosa</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <!-- Vincula la hoja de estilos CSS principal -->
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Vincula el archivo JS principal y lo carga de forma diferida -->
     <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <!-- Encabezado del sitio -->
     <header>
-        <div class="container"> <!-- Contenedor para centrar y espaciar el contenido -->
-
-            <!-- Logotipo y nombre -->
+        <div class="container">
             <div class="logo">
-                <!-- Imagen del logo de Vanessa -->
                 <img src="images/LogoVaneEscritorio.png" alt="Logo de Vanessa Larrosa" class="logo-img">
-                <!-- Texto del logo debajo de la imagen -->
                 <div class="logo-text">VANESSA<br>LARROSA</div>
             </div>
 
-            <!-- Controles de navegación y selector de idioma -->
             <div class="nav-controls">
+                
+                <ul class="nav-menu desktop-menu" id="nav-menu-desktop">
+                    <li><a href="#about" data-key="nav-about" data-section="about">Sobre mí</a></li>
+                    <li><a href="#projects" data-key="nav-projects" data-section="projects">Proyectos</a></li>
+                    <li><a href="#contact" data-key="nav-contact" data-section="contact">Contacto</a></li>
+                </ul>
 
-                <!-- Selector de idioma con botones independientes -->
                 <div class="language-selector">
-                    <!-- Botón para cambiar a español -->
                     <button class="lang-btn active" data-lang="es">ES</button>
-                    <!-- Separador visual entre idiomas-->
                     <span class="lang-separator">|</span>
-                    <!-- Botón para cambiar a inglés -->
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
 
-                <!-- Botón de menú hamburguesa (visible en móvil) para abrir/cerrar navegación -->
                 <button class="hamburger" id="hamburger">
-                    <span class="bar"></span> <!-- Línea 1 del icono de hamburguesa -->
-                    <span class="bar"></span> <!-- Línea 2 -->
-                    <span class="bar"></span> <!-- Línea 3 -->
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
             </div>
-
-            <!-- Menú de navegación principal -->
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#about" data-key="nav-about" data-section="about">Sobre mí</a></li>
-                <li><a href="#projects" data-key="nav-projects" data-section="projects">Proyectos</a></li>
-                <li><a href="#contact" data-key="nav-contact" data-section="contact">Contacto</a></li>
-            </ul>
         </div>
     </header>
 
-    <!-- Contenido principal de la página -->
+    <nav class="mobile-menu" id="nav-menu-mobile">
+        <ul>
+            <li><a href="#about" data-key="nav-about-mobile" data-section="about">Sobre mí</a></li>
+            <li><a href="#projects" data-key="nav-projects-mobile" data-section="projects">Proyectos</a></li>
+            <li><a href="#contact" data-key="nav-contact-mobile" data-section="contact">Contacto</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <!-- Sección hero (de presentación principal) -->
         <section class="hero" id="hero">
             <div class="hero-content">
-                <!-- Título grande de la portada -->
                 <h1 class="hero-title" data-key="hero-title">DESARROLLADORA<br>DE SOFTWARE</h1>
-
-                <!-- Subtítulo de presentación -->
                 <p class="hero-subtitle" data-key="hero-subtitle">
                     "Hola, soy Vanessa, graduada en DAM apasionada por el código,
                     explorando frontend y backend para crear experiencias digitales completas."
                 </p>
             </div>
-
-            <!-- Indicador visual para invitar al usuario a hacer scroll -->
             <div class="scroll-indicator" id="scroll-indicator">
                 <span class="scroll-text" data-key="scroll-text">Scroll para explorar</span>
                 <span class="material-symbols-outlined scroll-arrow">arrow_forward</span>
             </div>
         </section>
 
-        <!-- Sección Sobre Mí -->
         <section class="about" id="about">
             <div class="about-container">
-                <!-- Título de sección -->
                 <h2 class="about-title" data-key="about-title">SOBRE MÍ</h2>
-
-                <!-- Mensaje de clic (ejemplo multilenguaje) -->
                 <p class="click-message" data-key="about-click-message"></p>
-
-                <!-- Contenido específico sobre el perfil de Vanessa -->
                 <div class="about-content">
                     <p class="about-text" data-key="about-text-1">
                         Combino mi pasión por el código con una curiosidad infinita por aprender.
@@ -113,13 +89,10 @@
             </div>
         </section>
 
-        <!-- Sección de Proyectos -->
         <section id="projects" class="projects">
             <div class="projects-container">
                 <h2 class="projects-title" data-key="projects-title">PROYECTOS</h2>
-
                 <div class="projects-grid">
-                    <!-- Tarjeta de proyecto 1 -->
                     <a href="#" class="project-card" data-key="project-1" data-project-id="1">
                         <div class="project-content">
                             <h3 class="project-title" data-key="project-1-title">**PROYECTO EN DESARROLLO 1**</h3>
@@ -130,11 +103,8 @@
                         <div class="project-footer">
                             <p class="project-tags" data-key="project-1-tags">[ Tags: Próximamente, Tech 1 ]</p>
                         </div>
-                        <!-- Invitación a interactuar en móvil -->
                         <span class="click-message-mobile" data-key="about-click-mobile">¡Tócame!</span>
                     </a>
-
-                    <!-- Tarjeta de proyecto 2 -->
                     <a href="#" class="project-card" data-key="project-2" data-project-id="2">
                         <div class="project-content">
                             <h3 class="project-title" data-key="project-2-title">**PROYECTO EN DESARROLLO 2**</h3>
@@ -147,8 +117,6 @@
                         </div>
                         <span class="click-message-mobile" data-key="about-click-mobile">¡Tócame!</span>
                     </a>
-
-                    <!-- Tarjeta de proyecto 3 -->
                     <a href="#" class="project-card" data-key="project-3" data-project-id="3">
                         <div class="project-content">
                             <h3 class="project-title" data-key="project-3-title">**PROYECTO EN DESARROLLO 3**</h3>
@@ -161,8 +129,6 @@
                         </div>
                         <span class="click-message-mobile" data-key="about-click-mobile">¡Tócame!</span>
                     </a>
-
-                    <!-- Tarjeta de proyecto 4 -->
                     <a href="#" class="project-card" data-key="project-4" data-project-id="4">
                         <div class="project-content">
                             <h3 class="project-title" data-key="project-4-title">**PROYECTO EN DESARROLLO 4**</h3>
@@ -179,9 +145,63 @@
             </div>
         </section>
 
+        <section class="contact" id="contact">
+            <div class="contact-container">
+                <h2 class="contact-title" data-key="contact-title">CONTACTAR</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-links">
+                            <a href="https://www.linkedin.com/in/vanessa-larrosa-vilar/" class="contact-link"
+                                target="_blank" rel="noopener noreferrer" data-key="contact-linkedin">
+                                <span class="link-text">LinkedIn</span>
+                                <span class="material-symbols-outlined link-icon">work</span>
+                            </a>
+                            <a href="https://github.com/VanessaLarrosaDev" class="contact-link" target="_blank"
+                                rel="noopener noreferrer" data-key="contact-github">
+                                <span class="link-text">GitHub</span>
+                                <span class="material-symbols-outlined link-icon">code</span>
+                            </a>
+                            <a href="mailto:vanessalarrosadev@gmail.com" class="contact-link contact-email"
+                                data-key="contact-email">
+                                <span class="link-text">vanessalarrosadev@gmail.com</span>
+                                <span class="material-symbols-outlined link-icon">mail</span>
+                            </a>
+                        </div>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/vanessa-larrosa-vilar/" class="social-icon"
+                                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                            </a>
+                            <a href="https://github.com/VanessaLarrosaDev" class="social-icon" target="_blank"
+                                rel="noopener noreferrer" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </a>
+                            <a href="mailto:vanessalarrosadev@gmail.com" class="social-icon" aria-label="Email">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-image">
+                        <div class="image-container">
+                            <img src="images/RetratoVane.png" alt="Vanessa Larrosa - Desarrolladora de Software"
+                                class="profile-image">
+                            <div class="image-shadow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Pie de página -->
     <footer class="footer">
         <div class="footer-logo">
             <img src="images/LogoVaneEscritorio.png" alt="Logo de Vanessa Larrosa" class="logo-img">
@@ -189,5 +209,4 @@
         </div>
     </footer>
 </body>
-
 </html>
