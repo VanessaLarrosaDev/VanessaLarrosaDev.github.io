@@ -11,13 +11,15 @@
 /* ===========
 ** Importación de Fuentes y Variables
 ============== */
-/* Fuente principal desde Google Fonts */
+/* Importa la fuente principal "Space Grotesk" de Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
+/* Define variables personalizadas (custom properties) para la paleta de colores y transiciones */
 :root {
     /* Variables personalizadas para los colores del tema */
     --color-primary: #BB7EFB;
-    /* Color principal violet */
+    /* Color principal violeta */
     --color-secondary: #E8D9FB;
     /* Color secundario lavanda claro */
     --color-background: #000;
@@ -37,7 +39,7 @@
     --backdrop-blur-base: 20px;
     /* Blur por defecto para header/footer */
     --backdrop-blur-scrolled: 25px;
-    /* Blur aumentado cuando scroll */
+    /* Blur aumentado cuando se hace scroll */
     --transition-speed: 0.3s;
     /* Velocidad estándar para transiciones */
     --cubic-bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -47,7 +49,7 @@
 /* ===========
 ** Reset y Estilos Base
 ============== */
-/* Elimina padding y margen de todos los elementos y configura el box-sizing */
+/* Aplica un reset básico: elimina padding y margen de todos los elementos y usa `box-sizing: border-box` para un modelo de caja predecible */
 * {
     margin: 0;
     padding: 0;
@@ -57,63 +59,74 @@
 /* Estilo base del <body> */
 body {
     font-family: "Space Grotesk", sans-serif;
-    /* Fuente principal */
+    /* Aplica la fuente principal a todo el body */
     background-color: var(--color-background);
-    /* Fondo negro */
+    /* Usa el color de fondo definido en las variables */
     color: var(--color-text-light);
-    /* Texto blanco */
+    /* Usa el color de texto claro definido en las variables */
     line-height: 1.6;
-    /* Altura de línea cómoda */
+    /* Establece una altura de línea cómoda para la lectura */
 }
 
 /* ===========
 ** HEADER y NAVEGACIÓN
 ============== */
-/* Estilos del header fijo (barra superior) */
+/* Estilos para el header fijo (barra superior) */
 header {
-    background-color: rgba(0, 0, 0, 0.9);
-    /* Fondo semitransparente */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente para permitir ver el contenido debajo */
     backdrop-filter: blur(var(--backdrop-blur-base));
-    /* Fondo difuminado */
+    /* Aplica un efecto de desenfoque al fondo */
     -webkit-backdrop-filter: blur(var(--backdrop-blur-base));
+    /* Compatibilidad con navegadores WebKit (Safari, etc.) */
     padding: 15px 20px;
+    /* Relleno interno */
     position: fixed;
+    /* Fija el header en la parte superior */
     width: 100%;
+    /* Ocupa todo el ancho */
     top: 0;
+    /* Lo ancla a la parte superior */
     z-index: 1000;
-    /* Por encima de todo */
+    /* Lo coloca por encima de la mayoría de los demás elementos */
     border-bottom: 1px solid transparent;
+    /* Borde inferior transparente por defecto */
     transition: all var(--transition-speed) ease;
+    /* Transición suave para todos los cambios de estilo */
 }
 
-/* Al hacer scroll, el header cambia ligeramente */
+/* Estilos adicionales para el header cuando el usuario hace scroll */
 header.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(var(--backdrop-blur-scrolled));
     -webkit-backdrop-filter: blur(var(--backdrop-blur-scrolled));
+    /* Compatibilidad */
+    backdrop-filter: blur(var(--backdrop-blur-scrolled));
+    /* Estándar */
     border-bottom: 1px solid rgba(187, 126, 251, 0.4);
-    /* Línea violeta suave */
+    /* Añade un borde inferior sutil con el color primario */
 }
 
-/* Contenedor común para centrar y distribuir elementos */
+/* Contenedor principal para el header, usado para centrar y distribuir elementos */
 .container {
     display: flex;
-    /* Flex para alinear logo y menú */
+    /* Usa Flexbox para alinear el logo y los controles de navegación */
     justify-content: space-between;
+    /* Distribuye el espacio entre los elementos */
     align-items: center;
+    /* Centra los elementos verticalmente */
     max-width: 100%;
 }
 
-/* LOGO DEL SITIO */
-/* Contiene imagen y texto */
+/* Estilos para el contenedor del logo (imagen + texto) */
 .logo {
     display: flex;
+    /* Usa Flexbox para alinear la imagen y el texto del logo */
     align-items: center;
+    /* Centra los elementos verticalmente */
     gap: 12px;
-    /* Separación entre imagen y texto */
+    /* Espacio entre la imagen y el texto */
 }
 
-/* Imagen del logo */
+/* Estilos para la imagen del logo */
 .logo-img {
     width: 45px;
     height: 45px;
@@ -127,10 +140,10 @@ header.scrolled {
     font-size: 20px;
     font-weight: 700;
     color: #000;
-    /* Texto en negro */
+    /* Texto en negro para contraste */
 }
 
-/* Texto junto al logo */
+/* Estilos para el texto del logo */
 .logo-text {
     font-size: 18px;
     font-weight: 600;
@@ -138,7 +151,7 @@ header.scrolled {
     letter-spacing: 0.5px;
 }
 
-/* Controles de navegación: idioma + menú */
+/* Contenedor para los controles de navegación (selector de idioma y menú) */
 .nav-controls {
     display: flex;
     align-items: center;
@@ -155,7 +168,7 @@ header.scrolled {
     font-family: "Space Grotesk", sans-serif;
 }
 
-/* Botón idioma */
+/* Estilos para los botones de idioma */
 .lang-btn {
     background: none;
     border: none;
@@ -164,22 +177,25 @@ header.scrolled {
     font-weight: 400;
     font-family: "Space Grotesk", sans-serif;
     cursor: pointer;
+    /* Cambia el cursor a una mano al pasar por encima */
     transition: all var(--transition-speed) ease;
     padding: 4px 2px;
 }
 
-/* Idioma seleccionado */
+/* Estilo para el botón de idioma activo */
 .lang-btn.active {
     color: var(--color-primary);
+    /* El color primario indica que está seleccionado */
     font-weight: 700;
 }
 
-/* Hover en idioma no activo */
+/* Efecto hover para los botones de idioma no activos */
 .lang-btn:hover:not(.active) {
     color: var(--color-text-faded);
+    /* Atenúa el color al pasar el cursor */
 }
 
-/* Separador entre idiomas (un simple |) */
+/* Separador vertical entre los botones de idioma */
 .lang-separator {
     color: var(--color-text-subtle);
     font-size: 14px;
@@ -190,35 +206,45 @@ header.scrolled {
 /* =====================
 ** Menú Hamburguesa (para móviles)
 ====================== */
+/* Contenedor del menú hamburguesa */
 .hamburger {
     display: flex;
+    /* Usa Flexbox para apilar las barras */
     flex-direction: column;
     background: none;
+    /* Quita el fondo del botón */
     border: none;
+    /* Quita el borde */
     cursor: pointer;
     padding: 5px;
     gap: 4px;
+    /* Espacio entre las barras */
     z-index: 1001;
+    /* Se asegura de que esté por encima del header */
 }
 
-/* Rayitas del icono hamburguesa */
+/* Estilos para cada una de las "barras" del icono hamburguesa */
 .hamburger .bar {
     width: 22px;
     height: 2px;
     background-color: var(--color-text-light);
+    /* Color blanco */
     transition: all var(--transition-speed) ease;
+    /* Transición para la animación de la cruz */
     transform-origin: center;
 }
 
-/* Animación cuando el icono está "activo" (cruz) */
+/* Animación de la barra superior cuando el menú está activo (se convierte en la parte superior de la cruz) */
 .hamburger.active .bar:nth-child(1) {
     transform: rotate(45deg) translate(4px, 4px);
 }
 
+/* Animación de la barra del medio (se desvanece) */
 .hamburger.active .bar:nth-child(2) {
     opacity: 0;
 }
 
+/* Animación de la barra inferior (se convierte en la parte inferior de la cruz) */
 .hamburger.active .bar:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
@@ -226,7 +252,7 @@ header.scrolled {
 /* ====================
 ** NAVEGACIÓN Desktop y Mobile
 ==================== */
-/* Menú de escritorio oculto por defecto (mobile-first) */
+/* Menú de escritorio: oculto por defecto (mobile-first) */
 .nav-menu.desktop-menu {
     display: none;
     list-style: none;
@@ -234,12 +260,12 @@ header.scrolled {
     margin: 0;
 }
 
-/* Menú móvil: fuera de pantalla por defecto hasta que está activo */
+/* Menú móvil: se oculta por defecto fuera de la pantalla */
 .mobile-menu {
     position: fixed;
     top: 0;
     right: -100%;
-    /* Oculto fuera de pantalla */
+    /* Lo mueve completamente a la derecha, fuera de la vista */
     width: 280px;
     height: 100vh;
     background: rgba(0, 0, 0, 0.9);
@@ -252,15 +278,17 @@ header.scrolled {
     align-items: flex-start;
     padding-left: 40px;
     transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Animación de entrada suave */
     z-index: 999;
 }
 
-/* Cuando el menú móvil está activo, visible */
+/* Muestra el menú móvil cuando tiene la clase 'active' */
 .mobile-menu.active {
     right: 0;
+    /* Lo mueve de nuevo a la posición visible */
 }
 
-/* Estilo para los enlaces de menú */
+/* Estilos comunes para los enlaces de ambos menús */
 .desktop-menu a,
 .mobile-menu a {
     color: var(--color-text-light);
@@ -273,43 +301,52 @@ header.scrolled {
     font-family: "Space Grotesk", sans-serif;
 }
 
-/* Quita puntos a la lista del menú móvil */
+/* Elimina los puntos de la lista del menú móvil */
 .mobile-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Enlaces menú móvil más grandes */
+/* Enlaces del menú móvil con un tamaño de fuente más grande */
 .mobile-menu a {
     font-size: 24px;
 }
 
-/* Efectos hover y active para ambos menús */
+/* Efectos de hover y active para los enlaces de ambos menús */
 .desktop-menu a:hover,
 .mobile-menu a:hover,
 .desktop-menu a.active,
 .mobile-menu a.active {
     background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    /* Crea un gradiente de texto */
     -webkit-background-clip: text;
+    /* Recorta el fondo al contorno del texto (compatibilidad) */
     background-clip: text;
+    /* Recorta el fondo al contorno del texto */
     -webkit-text-fill-color: transparent;
+    /* Hace el color del texto transparente para que se vea el gradiente */
     transform: translateX(5px);
+    /* Desplaza ligeramente el texto */
 }
 
-/* Línea animada debajo de los enlaces */
+/* Línea animada que aparece debajo de los enlaces */
 .desktop-menu a::after,
 .mobile-menu a::after {
     content: '';
     position: absolute;
     width: 0;
+    /* Por defecto, la línea tiene un ancho de 0 */
     height: 2px;
     bottom: 0;
     left: 0;
     background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    /* La línea es un gradiente */
     transition: width var(--transition-speed) ease;
+    /* Anima el ancho */
 }
 
+/* La línea se expande al 100% al pasar el cursor o cuando el enlace está activo */
 .desktop-menu a:hover::after,
 .desktop-menu a.active::after,
 .mobile-menu a:hover::after,
@@ -317,14 +354,16 @@ header.scrolled {
     width: 100%;
 }
 
-/* Animación de entrada de los enlaces en menú móvil */
+/* Animación de entrada para los elementos de la lista del menú móvil */
 .mobile-menu.active li {
     margin: 20px 0;
     opacity: 0;
     transform: translateX(30px);
+    /* Se desplazan hacia la derecha y están invisibles */
     transition: all var(--transition-speed) ease;
 }
 
+/* Se añaden retrasos escalonados para que los enlaces aparezcan uno por uno */
 .mobile-menu.active li:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -337,7 +376,7 @@ header.scrolled {
     transition-delay: 0.3s;
 }
 
-/* Cuando está activo: aparecen desplazados y luego visibles */
+/* Cuando el menú está activo, los elementos se vuelven visibles y vuelven a su posición */
 .mobile-menu.active li {
     opacity: 1;
     transform: translateX(0);
@@ -360,7 +399,7 @@ header.scrolled {
     width: 100%;
 }
 
-/* Logo reducido en el footer */
+/* Contenedor del logo en el footer */
 .footer-logo {
     display: flex;
     flex-direction: column;
@@ -368,6 +407,7 @@ header.scrolled {
     gap: 5px;
 }
 
+/* Imagen del logo en el footer (más pequeña) */
 .footer .logo-img {
     width: 25px;
     height: 25px;
@@ -375,6 +415,7 @@ header.scrolled {
     border-radius: 8px;
 }
 
+/* Texto del logo en el footer (más pequeño y atenuado) */
 .footer .logo-text {
     font-size: 12px;
     font-weight: 400;
@@ -390,7 +431,7 @@ header.scrolled {
 ============= */
 .hero {
     min-height: 100vh;
-    /* Ocupa toda la pantalla */
+    /* Ocupa toda la altura de la ventana */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -405,14 +446,15 @@ header.scrolled {
     max-width: 800px;
     width: 100%;
     animation: fadeInUp 1.2s ease-out;
-    /* Aparición suave */
+    /* Animación de aparición */
     z-index: 1;
-    /* Encima de decorativos */
+    /* Se superpone a otros elementos de fondo */
 }
 
 /* Título grande animado con gradiente */
 .hero-title {
     font-size: clamp(2.5rem, 8vw, 6rem);
+    /* Tamaño de fuente que se ajusta al ancho de la pantalla */
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: 1.2px;
@@ -423,11 +465,10 @@ header.scrolled {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 200%;
-    /* Efecto shimmer */
     animation: fadeInUp 1.2s ease-out, shimmer 3s ease-in-out infinite;
 }
 
-/* Subtítulo en la sección hero */
+/* Subtítulo de la sección hero */
 .hero-subtitle {
     font-size: clamp(1rem, 3vw, 1.3rem);
     font-weight: 300;
@@ -436,9 +477,10 @@ header.scrolled {
     max-width: 600px;
     margin: 0 auto 60px;
     animation: fadeInUp 1.2s ease-out 0.3s both;
+    /* Animación con un pequeño retraso */
 }
 
-/* Indicador para hacer scroll (flecha abajo animada) */
+/* Indicador de scroll (flecha animada) */
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
@@ -454,7 +496,7 @@ header.scrolled {
     animation: fadeInUp 1.2s ease-out 0.6s both;
 }
 
-/* Texto del scroll */
+/* Texto del indicador de scroll */
 .scroll-text {
     font-size: 12px;
     font-weight: 400;
@@ -465,7 +507,7 @@ header.scrolled {
     white-space: nowrap;
 }
 
-/* Flecha animada */
+/* Flecha del indicador de scroll */
 .scroll-arrow {
     font-family: 'Material Symbols Outlined';
     font-size: 20px;
@@ -473,17 +515,34 @@ header.scrolled {
     transform: rotate(90deg);
     transition: all var(--transition-speed) ease;
     animation: pulse-down-subtle 2s ease-in-out infinite;
+    /* Animación de pulsación */
 }
 
-/* Hover: bajar la flecha y resalta */
+/* Efecto hover en el indicador de scroll */
 .scroll-indicator:hover .scroll-arrow {
     color: var(--color-primary);
     transform: rotate(90deg) translateY(4px);
 }
 
 /* ===========
-** Sobre mí
+** Sobre mí, Proyectos y Contacto
 ============= */
+/* Reduce el padding para acortar la distancia entre las secciones */
+.about,
+.projects,
+.contact {
+    min-height: auto;
+    padding: 60px 20px 40px;
+    /* Padding reducido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    scroll-margin-top: 80px;
+    /* Margen para que el header fijo no cubra el título al navegar */
+}
+
+/* Contenedores interiores de las secciones */
 .about-container,
 .projects-container,
 .contact-container {
@@ -496,14 +555,7 @@ header.scrolled {
 
 /* Sección principal "about" */
 .about {
-    min-height: 100vh;
-    padding: 80px 20px 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: var(--color-background);
-    position: relative;
-    scroll-margin-top: 80px;
 }
 
 /* Caja principal del about */
@@ -526,7 +578,7 @@ header.scrolled {
     transition: transform 0.1s ease;
 }
 
-/* Título del about */
+/* Título de la sección "Sobre mí" */
 .about-title {
     font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
@@ -539,7 +591,7 @@ header.scrolled {
     -webkit-text-fill-color: transparent;
 }
 
-/* Contenido del about */
+/* Contenedor del contenido de texto de la sección "Sobre mí" */
 .about-content {
     display: flex;
     flex-direction: column;
@@ -547,7 +599,7 @@ header.scrolled {
     text-align: left;
 }
 
-/* Párrafos about */
+/* Párrafos del "Sobre mí" */
 .about-text {
     font-size: clamp(1rem, 2.5vw, 1.1rem);
     font-weight: 300;
@@ -556,25 +608,55 @@ header.scrolled {
     margin: 0;
 }
 
-/* Mensaje flotante: "haz click" */
-.click-message {
+/*
+** BOTÓN/MENSAJE DE DESCARGA DE CV
+*/
+.about-download-button {
+    /* Posicionamiento absoluto para colocar el botón en la esquina */
     position: absolute;
+    /* Se mantiene en la esquina inferior derecha */
     bottom: 1rem;
-    right: 1rem;
-    font-size: 10px;
-    font-weight: 400;
-    color: var(--color-text-subtle);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    white-space: nowrap;
+    /* Ajusta este valor para mover el botón más arriba, por ejemplo, a 1.5rem */
+    right: 1.5rem;
+    /* Ajusta este valor para mover el botón más a la izquierda, por ejemplo, a 1.5rem */
+
+    /* Estilos del botón */
+    background: transparent;
+    border: none;
     cursor: pointer;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-primary);
+
+    /* Ahora es visible por defecto y no tiene animación de entrada */
+    opacity: 1;
+    transform: translateY(0);
+    transition: all var(--transition-speed) ease-in-out;
+    padding: 8px 12px;
+    border-radius: 8px;
+    /*border: 1px solid var(--color-primary);*/
     user-select: none;
-    text-align: center;
-    animation: pulse 2.5s infinite;
-    z-index: 10;
+    /* Para evitar la selección del texto al tocar */
 }
 
-/* Efecto resplandor al hacer hover/click */
+
+/* Muestra el botón cuando el contenedor padre tiene la clase :hover o .is-active */
+.about-container:hover .about-download-button,
+.about-container.is-active .about-download-button {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(187, 126, 251, 0.3);
+}
+
+/* Efecto hover sobre el botón */
+.about-download-button:hover {
+    background: rgba(187, 126, 251, 0.1);
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+/* Efecto de resplandor al pasar el cursor o al estar activo en el contenedor */
 .about-container:hover,
 .about-container.is-active {
     transform: scale(1.02);
@@ -588,7 +670,7 @@ header.scrolled {
     animation: ledPulse 2s ease-in-out infinite;
 }
 
-/* Título y texto resplandecientes con animación */
+/* Título y texto resplandecientes con animación al pasar el cursor */
 .about-container:hover .about-title,
 .about-container.is-active .about-title {
     background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary));
@@ -604,15 +686,9 @@ header.scrolled {
 /* ===========
 ** PROYECTOS
 ============ */
-/* Estructura y fondo sección */
+/* Estructura y fondo de la sección de proyectos */
 .projects {
-    min-height: 100vh;
-    padding: 80px 20px 60px;
     background-color: var(--color-background);
-    scroll-margin-top: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .projects-container {
@@ -624,7 +700,7 @@ header.scrolled {
     text-align: left;
 }
 
-/* Título grande con gradiente */
+/* Título de la sección de proyectos */
 .projects-title {
     font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
@@ -637,15 +713,15 @@ header.scrolled {
     -webkit-text-fill-color: transparent;
 }
 
+/* Grid de proyectos */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* 2 columnas */
     gap: 25px;
     width: 100%;
 }
 
-/* Tarjeta de proyecto animada */
+/* Tarjeta de proyecto individual */
 .project-card {
     display: flex;
     flex-direction: column;
@@ -668,6 +744,7 @@ header.scrolled {
     cursor: pointer;
 }
 
+/* Contenido de la tarjeta del proyecto */
 .project-content {
     flex: 1;
     display: flex;
@@ -678,6 +755,7 @@ header.scrolled {
     width: 100%;
 }
 
+/* Título de la tarjeta del proyecto */
 .project-card .project-title {
     font-size: 1.3rem;
     font-weight: 600;
@@ -687,6 +765,7 @@ header.scrolled {
     line-height: 1.2;
 }
 
+/* Descripción del proyecto */
 .project-card .project-description {
     font-size: 1rem;
     line-height: 1.5;
@@ -694,7 +773,7 @@ header.scrolled {
     color: var(--color-card-text);
 }
 
-/* Pie de las tarjetas: tags, etc */
+/* Pie de la tarjeta: tags, etc */
 .project-footer {
     margin-top: auto;
     align-self: flex-start;
@@ -717,10 +796,12 @@ header.scrolled {
     line-height: 1.3;
 }
 
-/* Efecto al pasar el mouse por una tarjeta */
+/* Efecto al pasar el cursor por una tarjeta de proyecto */
 .project-card:hover {
     transform: scale(1.03) translateZ(10px);
+    /* Aumenta ligeramente de tamaño */
     border-color: var(--color-primary);
+    /* Cambia el color del borde */
     box-shadow: 0 0 20px rgba(187, 126, 251, 0.4),
         0 0 40px rgba(187, 126, 251, 0.2),
         0 0 60px rgba(187, 126, 251, 0.1),
@@ -732,7 +813,7 @@ header.scrolled {
     animation: ledPulse 2s ease-in-out infinite;
 }
 
-/* Título y el gradiente animado en hover */
+/* Animación de gradiente en el título al pasar el cursor */
 .project-card:hover .project-title {
     background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
     -webkit-background-clip: text;
@@ -749,7 +830,7 @@ header.scrolled {
     color: var(--color-text-faded);
 }
 
-/* "Haz click" en proyectos móvil */
+/* Mensaje "¡Tócame!" para proyectos en móviles */
 .project-card .click-message-mobile {
     display: none;
     position: absolute;
@@ -768,15 +849,15 @@ header.scrolled {
     z-index: 1;
 }
 
+/* Muestra el mensaje en pantallas pequeñas (hasta 1023px) */
 @media (max-width: 1023px) {
     .project-card .click-message-mobile {
         display: block;
     }
 }
 
-/* .is-active para cuando la tarjeta está clicada (móviles/tablets) */
+/* Clase .is-active para cuando la tarjeta se toca en dispositivos táctiles */
 .project-card.is-active {
-    /* igual a hover */
     transform: scale(1.03) translateZ(10px);
     border-color: var(--color-primary);
     box-shadow: 0 0 20px rgba(187, 126, 251, 0.4),
@@ -809,26 +890,20 @@ header.scrolled {
 ** CONTACTO
 ============= */
 .contact {
-    min-height: 100vh;
-    padding: 80px 20px 60px;
     background-color: #000000;
-    scroll-margin-top: 80px;
-    display: flex;
-    align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .contact-container {
     max-width: 1200px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 0 19%;
     padding: 2rem 1rem;
     box-sizing: border-box;
-    
 }
 
-/* Título de contacto con gradiente y animación entra al hacer scroll */
+/* Título de contacto con gradiente y animación de entrada */
 .contact-title {
     font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
@@ -844,7 +919,7 @@ header.scrolled {
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-/* Estructura interna de la sección */
+/* Estructura interna de la sección de contacto */
 .contact-content {
     display: flex;
     gap: 4rem;
@@ -852,6 +927,7 @@ header.scrolled {
     justify-content: space-between;
 }
 
+/* Contenedor de la información de contacto */
 .contact-info {
     flex: 1;
     display: flex;
@@ -862,13 +938,14 @@ header.scrolled {
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-/* Enlaces de contacto */
+/* Contenedor de los enlaces de contacto */
 .contact-links {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
+/* Enlace de contacto individual */
 .contact-link {
     display: flex;
     align-items: center;
@@ -881,13 +958,15 @@ header.scrolled {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all var(--transition-speed) ease;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
+/* Texto del enlace */
 .link-text {
     transition: all var(--transition-speed) ease;
 }
 
+/* Icono del enlace */
 .link-icon {
     font-size: 1.5rem;
     opacity: 0.7;
@@ -895,7 +974,7 @@ header.scrolled {
     transform: translateX(10px);
 }
 
-/* Hover resalta y anima el enlace de contacto */
+/* Efecto de hover en los enlaces de contacto */
 .contact-link:hover {
     color: var(--color-primary);
     border-bottom-color: var(--color-primary);
@@ -916,8 +995,9 @@ header.scrolled {
     color: var(--color-secondary);
 }
 
+/* Estilo para el email */
 .contact-email {
-    font-family: 'Courier New', monospace;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
@@ -930,7 +1010,7 @@ header.scrolled {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Estilo de los íconos */
+/* Estilo de cada ícono de red social */
 .social-icon {
     width: 50px;
     height: 50px;
@@ -954,7 +1034,7 @@ header.scrolled {
     transition: all var(--transition-speed) ease;
 }
 
-/* Hover: resplandor y escala */
+/* Hover: resplandor y escala en los iconos sociales */
 .social-icon:hover {
     background: var(--color-primary);
     transform: translateY(-5px) scale(1.1);
@@ -980,7 +1060,7 @@ header.scrolled {
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-/* Contenedor imagen */
+/* Contenedor de la imagen */
 .image-container {
     position: relative;
     width: 300px;
@@ -990,15 +1070,16 @@ header.scrolled {
     justify-content: center;
     margin-bottom: 2rem;
     transition: all 0.6s ease;
+    margin-top: 2.4rem;
 }
 
 /* Imagen de perfil */
 .profile-image {
-    width: 100%;
-    height: 100%;
+    width: 150%;
+    height: 150%;
     object-fit: cover;
     object-position: center;
-    border-radius: 20px;
+    border-radius: 10px;
     z-index: 2;
     transition: all 0.6s var(--cubic-bezier);
     filter: brightness(1) contrast(1.05) saturate(1.1);
@@ -1020,7 +1101,7 @@ header.scrolled {
     }
 }
 
-/* Animación shimmer en gradientes de texto */
+/* Animación de brillo para los gradientes de texto */
 @keyframes shimmer {
 
     0%,
@@ -1033,7 +1114,7 @@ header.scrolled {
     }
 }
 
-/* Pulsación de flecha scroll */
+/* Animación de pulsación de la flecha de scroll */
 @keyframes pulse-down-subtle {
 
     0%,
@@ -1048,7 +1129,7 @@ header.scrolled {
     }
 }
 
-/* Pulsación general */
+/* Animación de pulsación general */
 @keyframes pulse {
 
     0%,
@@ -1063,7 +1144,7 @@ header.scrolled {
     }
 }
 
-/* Resplandor led para tarjetas y contenedores */
+/* Animación de resplandor para tarjetas y contenedores */
 @keyframes ledPulse {
 
     0%,
@@ -1125,23 +1206,12 @@ header.scrolled {
     transform: translateX(100%);
 }
 
-/* Flotación lenta de la imagen de perfil */
-@keyframes floatImage {
 
-    0%,
-    100% {
-        transform: translateY(0px) scale(1);
-    }
-
-    50% {
-        transform: translateY(-10px) scale(1.02);
-    }
-}
 
 /* ===========
 ** Animaciones al entrar en vista (scroll)
 ============= */
-/* Por defecto, invisible y abajo */
+/* Por defecto, los elementos están invisibles y desplazados hacia abajo */
 .about-title,
 .about-text,
 .projects-title,
@@ -1154,7 +1224,7 @@ header.scrolled {
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-/* Entran en escena (JavaScript añade .in-view) */
+/* Cuando se les añade la clase .in-view (por JavaScript), se vuelven visibles y se deslizan a su posición original */
 .about.in-view .about-title,
 .about.in-view .about-text,
 .projects.in-view .projects-title,
@@ -1166,7 +1236,7 @@ header.scrolled {
     transform: translateY(0);
 }
 
-/* Delays escalonados para animar elemento a elemento */
+/* Delays escalonados para que los párrafos aparezcan uno después del otro */
 .about.in-view .about-text:nth-child(1) {
     transition-delay: 0.2s;
 }
@@ -1183,6 +1253,7 @@ header.scrolled {
     transition-delay: 0.8s;
 }
 
+/* Delays escalonados para las tarjetas de proyectos */
 .projects.in-view .project-card:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -1199,6 +1270,7 @@ header.scrolled {
     transition-delay: 0.4s;
 }
 
+/* Animaciones de entrada para la sección de contacto */
 .contact.in-view .contact-title,
 .contact.in-view .contact-info,
 .contact.in-view .contact-image {
@@ -1250,7 +1322,7 @@ header.scrolled {
         font-size: 16px;
     }
 
-    /* Desplegar menú desktop y ocultar mobile+hamburguesa */
+    /* Despliega el menú de escritorio y oculta el menú móvil y el icono de hamburguesa */
     .nav-menu.desktop-menu {
         display: flex;
         flex-direction: row;
@@ -1272,9 +1344,13 @@ header.scrolled {
         display: none;
     }
 
-    /* Ajustes de espaciados y tamaños en secciones */
+    /* Ajustes de espaciados y tamaños en secciones para escritorio */
     .hero {
         padding: 120px 40px;
+    }
+
+    .hero-content {
+        margin-bottom: 2rem;
     }
 
     .hero-title {
@@ -1287,7 +1363,7 @@ header.scrolled {
     }
 
     .about {
-        padding: 120px 40px 100px;
+        padding: 80px 40px 60px;
         scroll-margin-top: 100px;
     }
 
@@ -1311,7 +1387,7 @@ header.scrolled {
     }
 
     .projects {
-        padding: 120px 40px 100px;
+        padding: 80px 40px 60px;
         scroll-margin-top: 100px;
     }
 
@@ -1342,12 +1418,30 @@ header.scrolled {
     .project-card .project-description {
         font-size: 0.95rem;
     }
+
+    .contact {
+        padding: 80px 40px 60px;
+        scroll-margin-top: 100px;
+    }
+
+    /* Asegurar que el brillo se mantenga dentro del área del enlace */
+    .contact-link {
+        overflow: hidden; /* Esto evita que el brillo se salga del área del enlace */
+    }
+    
+    .contact-link::before {
+        right: 0;
+        left: auto;
+        transform: translateX(100%);
+    }
+    
+    .contact-link:hover::before {
+        transform: translateX(-100%);
+    }
 }
 
 /* TABLET y MOBILE (<=1023px) */
 @media (max-width: 1023px) {
-
-    /* Menú hamburguesa visible */
     .hamburger {
         display: flex;
     }
@@ -1437,87 +1531,125 @@ header.scrolled {
 
     .project-card .click-message-mobile {
         display: block;
-    }
-}
-
-/* MOBILE (<=767px) para CONTACTO */
-@media (max-width: 767px) {
-    .contact {
-        padding: 80px 20px 60px;
-        min-height: auto;
+        pointer-events: none;
     }
 
-    .contact-container {
-        padding: 2rem 1rem;
-    }
+    /* MOBILE (<=767px) para CONTACTO */
+    @media (max-width: 767px) {
+        .contact {
+            min-height: auto;
+        }
 
-    .contact-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
+        .contact-container {
+            padding: 2rem 1rem;
+            margin: 0 auto;
+            /* Corrección: Alinea el contenedor al centro, igual que los demás */
+        }
 
-    .contact-content {
-        flex-direction: column;
-        gap: 2rem;
-        text-align: center;
-    }
+        /* Título de la sección de contacto alineado a la izquierda */
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
 
-    .contact-info {
-        order: 2;
-        gap: 2rem;
-    }
+        /* Contenido de contacto con elementos alineados a la izquierda */
+        .contact-content {
+            flex-direction: column;
+            gap: 2rem;
+            text-align: left;
+        }
 
-    .contact-image {
-        order: 1;
-        margin-bottom: 2rem;
-    }
+        /* Información de contacto para que aparezca antes que la imagen */
+        .contact-info {
+            order: 1;
+            /* Establece el orden de visualización a 1 para que aparezca primero */
+            gap: 2rem;
+        }
 
-    .image-container {
-        width: 200px;
-        height: 280px;
-        margin-bottom: 1rem;
-    }
+        /* Imagen de perfil para que aparezca al final */
+        .contact-image {
+            order: 2;
+            /* Establece el orden de visualización a 2 para que aparezca al final */
+            margin-bottom: 2rem;
+            align-self: center;
+            /* Centra la imagen de perfil en su contenedor flex */
+        }
 
-    .contact-links {
-        gap: 1.5rem;
-    }
+        .image-container {
+            width: 200px;
+            height: 280px;
+            margin-bottom: 1rem;
+        }
 
-    .contact-link {
-        font-size: 1.1rem;
-        padding: 1rem 0;
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-    }
+        .contact-links {
+            gap: 1.5rem;
+        }
 
-    .link-icon {
-        transform: translateX(0);
-        font-size: 1.2rem;
-    }
+        /* Enlaces de contacto con texto e ícono en la misma línea y alineados correctamente */
+        .contact-link {
+            font-size: 1.1rem;
+            padding: 1rem 0;
+            flex-direction: row;
+            /* Cambia la dirección del flujo de los elementos a horizontal (texto e ícono en la misma línea) */
+            align-items: center;
+            /* Centra los elementos verticalmente en el enlace */
+            justify-content: space-between;
+            /* Distribuye el espacio para que el texto esté a la izquierda y el ícono a la derecha */
+            position: relative;
+            /* Agregado para que el pseudo-elemento `::before` se posicione correctamente */
+        }
 
-    .contact-link:hover {
-        transform: translateX(0) scale(1.02);
-        padding-left: 0;
-    }
+        /* Corrección para que la línea de hover no se vea mal */
+        .contact-link:hover::after {
+            width: 100%;
+        }
 
-    .social-icons {
-        justify-content: center;
-        gap: 1rem;
-        padding-top: 1.5rem;
-    }
+        .link-icon {
+            transform: translateX(0);
+            font-size: 1.2rem;
+        }
 
-    .social-icon {
-        width: 45px;
-        height: 45px;
-    }
+        .contact-link:hover {
+            transform: translateX(0);
+            /* Anula la animación de desplazamiento al pasar el ratón en la versión móvil */
+            padding-left: 0;
+            /* Anula el padding que causaba el desplazamiento */
+        }
 
-    .social-icon svg {
-        width: 20px;
-        height: 20px;
-    }
+        /* Íconos sociales alineados a la izquierda */
+        .social-icons {
+            justify-content: flex-start;
+            /* Alinea los íconos al inicio del contenedor (izquierda) */
+            gap: 1rem;
+            padding-top: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
 
-    .social-icon:hover {
-        transform: translateY(-2px) scale(1.05);
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Tooltip/mensaje en móvil: evita que bloquee clics */
+        .click-message-mobile {
+            pointer-events: none;
+            max-width: 100%;
+            white-space: normal;
+            overflow-wrap: break-word;
+            z-index: 1;
+        }
     }
 }
