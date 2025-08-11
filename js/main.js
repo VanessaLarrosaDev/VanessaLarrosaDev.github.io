@@ -1,6 +1,6 @@
-// ================================
+// ==================================
 // VARIABLES GLOBALES Y CONFIGURACIÓN
-// ================================
+// ==================================
 
 // Variable para guardar la última posición de scroll del usuario
 let lastScrollTop = 0;
@@ -16,13 +16,13 @@ const cvConfig = {
 
 // Configuración para Intersection Observer utilizado en animaciones al hacer scroll
 const observerOptions = {
-    threshold: 0.3,             // Lanza la animación cuando el 30% del elemento es visible
-    rootMargin: '0px 0px -50px 0px' // Margen para anticipar la animación antes de estar visible
+    threshold: 0.3,                          // Lanza la animación cuando el 30% del elemento es visible
+    rootMargin: '0px 0px -50px 0px'          // Margen para anticipar la animación antes de estar visible
 };
 
-// ================================
+// ==================================
 // DICCIONARIO DE TRADUCCIONES
-// ================================
+// ==================================
 
 // Diccionario con todas las traducciones para español (es) e inglés (en)
 const translations = {
@@ -33,8 +33,8 @@ const translations = {
         "nav-about-mobile": "Sobre mí",
         "nav-projects-mobile": "Proyectos",
         "nav-contact-mobile": "Contacto",
-        "hero-title": "DESARROLLADORA<br>DE SOFTWARE",
-        "hero-subtitle": '"Hola, soy Vanessa, graduada en DAM apasionada por el código, explorando frontend y backend para crear experiencias digitales completas."',
+        "hero-title": "DESARROLLADORA<br><span class='gradient-text'>DE SOFTWARE</span>", // Actualizado para el nuevo hero
+        "hero-subtitle": "Hola, soy Vanessa, graduada en DAM apasionada por el código, explorando frontend y backend para crear experiencias digitales completas.", // Sin comillas para el nuevo hero
         "scroll-text": "Scroll para explorar",
         "about-title": "SOBRE MÍ",
         "about-text-1": "Combino mi pasión por el código con una curiosidad infinita por aprender.",
@@ -64,7 +64,7 @@ const translations = {
         "email-copied": "¡Email copiado al portapapeles!",
         "link-opening": "Abriendo enlace...",
         "about-touch-message": "¡Tócame!", // Para móviles/dispositivos táctiles
-        "about-click-mobile": "¡Tócame!"   // Clave extra para evitar errores si se usa legacy
+        "about-click-mobile": "¡Tócame!"    // Clave extra para evitar errores si se usa legacy
     },
 
     en: {
@@ -74,8 +74,8 @@ const translations = {
         "nav-about-mobile": "About Me",
         "nav-projects-mobile": "Projects",
         "nav-contact-mobile": "Contact",
-        "hero-title": "SOFTWARE<br>DEVELOPER",
-        "hero-subtitle": '"Hi, I\'m Vanessa, a DAM graduate passionate about code, exploring frontend and backend to create complete digital experiences."',
+        "hero-title": "SOFTWARE<br><span class='gradient-text'>DEVELOPER</span>", // Actualizado para el nuevo hero
+        "hero-subtitle": "Hi, I'm Vanessa, a DAM graduate passionate about code, exploring frontend and backend to create complete digital experiences.", // Sin comillas
         "scroll-text": "Scroll to explore",
         "about-title": "ABOUT ME",
         "about-text-1": "I combine my passion for code with an infinite curiosity to learn.",
@@ -109,9 +109,9 @@ const translations = {
     }
 };
 
-// ================================
+// ==================================
 // FUNCIONES UTILITARIAS
-// ================================
+// ==================================
 
 /**
  * Verifica si el usuario está en un dispositivo táctil
@@ -134,9 +134,9 @@ function isTabletOrMobile() {
     return window.innerWidth <= 1023;
 }
 
-// ================================
+// ==================================
 // EFECTO DE SCROLL EN EL HEADER
-// ================================
+// ==================================
 
 /**
  * Añade/quita la clase 'scrolled' al header según el scroll
@@ -156,9 +156,9 @@ function initHeaderScroll() {
     });
 }
 
-// ================================
+// ==================================
 // MENÚ HAMBURGUESA Y NAVEGACIÓN
-// ================================
+// ==================================
 
 /**
  * Lógica del menú hamburguesa para móvil/tablet
@@ -197,9 +197,9 @@ function initHamburgerMenu() {
     });
 }
 
-// ================================
+// ==================================
 // CAMBIO DE IDIOMA Y TRADUCCIONES
-// ================================
+// ==================================
 
 /**
  * Actualiza todos los textos traducibles de la web al cambiar de idioma
@@ -265,9 +265,9 @@ function initLanguageToggle() {
     });
 }
 
-// ================================
+// ==================================
 // NAVEGACIÓN ACTIVA Y SMOOTH SCROLL
-// ================================
+// ==================================
 
 /**
  * Marca el enlace de navegación activo según el scroll
@@ -276,11 +276,11 @@ function initLanguageToggle() {
 function initActiveNavigation() {
     const sections = document.querySelectorAll('section[id]');
     const allNavLinks = document.querySelectorAll('.desktop-menu a[data-section], .mobile-menu a[data-section]');
-    
+
     function updateActiveLink() {
         let currentSection = '';
         const scrollPosition = window.pageYOffset + 100; // Ajusta por el header
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
@@ -301,7 +301,7 @@ function initActiveNavigation() {
     updateActiveLink();
 
     allNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('data-section');
             const targetSection = document.getElementById(targetId);
@@ -315,9 +315,123 @@ function initActiveNavigation() {
     });
 }
 
-// ================================
+// ==================================
+// NUEVAS FUNCIONALIDADES DEL HERO
+// ==================================
+
+/**
+ * Animaciones interactivas del hero
+ */
+function initHeroAnimation() {
+    // Variables para la posición del ratón
+    let mouseX = 0;
+    let mouseY = 0;
+
+    // Escuchar el movimiento del ratón en todo el documento
+    document.addEventListener('mousemove', (e) => {
+        // Almacena la posición actual del ratón
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        // Actualiza los efectos del hero con la nueva posición del ratón
+        updateCircuits();
+        updateText();
+    });
+
+    
+
+    // Función para actualizar el brillo y la escala de las líneas de circuito
+    function updateCircuits() {
+        const circuits = circuitContainer.querySelectorAll('.circuit-line');
+
+        circuits.forEach((circuit) => {
+            const rect = circuit.getBoundingClientRect();
+            const circuitCenterX = rect.left + rect.width / 2;
+            const circuitCenterY = rect.top + rect.height / 2;
+
+            // Calcula la distancia del ratón a cada línea de circuito
+            const distance = Math.sqrt(Math.pow(mouseX - circuitCenterX, 2) + Math.pow(mouseY - circuitCenterY, 2));
+            const proximity = Math.max(0, 1 - distance / 200);
+
+            // Aumenta el brillo y la escala cuando el ratón está cerca
+            circuit.style.opacity = 0.6 + proximity * 0.4;
+            circuit.style.filter = `brightness(${1 + proximity * 2}) saturate(${1 + proximity})`;
+            circuit.style.transform = `scale(${1 + proximity * 0.2})`;
+        });
+    }
+
+    // Función para actualizar el efecto de resplandor en el texto
+    function updateText() {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const distance = Math.sqrt(Math.pow(mouseX - centerX, 2) + Math.pow(mouseY - centerY, 2));
+        const intensity = Math.min(distance / 300, 1);
+
+        // Añade un sutil efecto de resplandor al título
+        mainTitle.style.textShadow = `0 0 ${10 + intensity * 20}px rgba(147,51,234,${0.3 + intensity * 0.4})`;
+
+        // Aumenta la opacidad del subtítulo al alejar el ratón del centro
+        subtitle.style.opacity = 0.8 + intensity * 0.2;
+    }
+
+    // Crea y añade las líneas de circuito al DOM
+    function createCircuits() {
+        // Líneas horizontales
+        for (let i = 0; i < 8; i++) {
+            const circuit = document.createElement('div');
+            circuit.className = 'circuit-line';
+            circuit.style.width = (150 + Math.random() * 300) + 'px';
+            circuit.style.left = Math.random() * (window.innerWidth - 300) + 'px';
+            circuit.style.top = Math.random() * window.innerHeight + 'px';
+            circuit.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+            circuit.style.animation = `circuitFlow ${8 + Math.random() * 6}s linear infinite ${Math.random() * 4}s`;
+            circuitContainer.appendChild(circuit);
+        }
+        // Líneas verticales
+        for (let i = 0; i < 6; i++) {
+            const circuit = document.createElement('div');
+            circuit.className = 'circuit-line circuit-vertical';
+            circuit.style.height = (100 + Math.random() * 200) + 'px';
+            circuit.style.left = Math.random() * window.innerWidth + 'px';
+            circuit.style.top = Math.random() * (window.innerHeight - 200) + 'px';
+            circuit.style.transform = `rotate(${90 + Math.random() * 20 - 10}deg)`;
+            circuitContainer.appendChild(circuit);
+        }
+    }
+
+    // Regenera los circuitos cada cierto tiempo
+    function regenerateCircuits() {
+        circuitContainer.innerHTML = ''; // Limpia los circuitos existentes
+        createCircuits(); // Crea nuevos
+    }
+
+    // Efectos al pasar el ratón por los enlaces de navegación
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(2)';
+            cursor.style.background = 'radial-gradient(circle, rgba(147,51,234,0.6) 0%, transparent 70%)';
+        });
+
+        link.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursor.style.background = 'radial-gradient(circle, rgba(147,51,234,0.8) 0%, transparent 70%)';
+        });
+    });
+
+    // Llama a las funciones iniciales para crear los circuitos y regenerarlos
+    createCircuits();
+    // Vuelve a crear los circuitos cada 15 segundos para mantener la animación dinámica
+    setInterval(regenerateCircuits, 15000);
+
+    // Ajusta los circuitos al cambiar el tamaño de la ventana
+    window.addEventListener('resize', () => {
+        setTimeout(regenerateCircuits, 300);
+    });
+}
+
+
+// ==================================
 // FUNCIONALIDAD DE LA SECCIÓN HERO
-// ================================
+// ==================================
 
 /**
  * Permite hacer scroll a la sección "Sobre mí" al hacer clic en el indicador
@@ -338,25 +452,13 @@ function initScrollIndicator() {
  * Aplica efecto parallax (movimiento) en el hero para escritorio
  */
 function initParallaxEffect() {
-    if (!isMobile()) {
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const parallaxSpeed = 0.5;
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-            }
-        }
-        
-        window.addEventListener('scroll', () => {
-            requestAnimationFrame(updateParallax);
-        });
-    }
+    // Esta función ya no es necesaria, ya que la nueva animación de ondas hace el efecto de movimiento
+    // Si quisieras mantenerla, deberías modificar el HTML para evitar conflictos
 }
 
-// ================================
+// ==================================
 // FUNCIONALIDAD DE DESCARGA DEL CV
-// ================================
+// ==================================
 
 /**
  * Realiza la descarga del curriculum (PDF) usando un enlace invisible
@@ -423,9 +525,9 @@ function initCVDownloadLogic() {
     });
 }
 
-// ================================
+// ==================================
 // INTERSECTION OBSERVER PARA ANIMACIONES
-// ================================
+// ==================================
 
 /**
  * Inicializa animaciones cuando las secciones entran en pantalla
@@ -588,11 +690,68 @@ function fallbackCopyTextToClipboard(text) {
 }
 
 /**
+ * Muestra un mensaje temporal en la pantalla para indicar que el texto ha sido copiado
+ * @param {Element} targetElement - El elemento junto al cual se mostrará el mensaje
+ * @param {string} message - El texto del mensaje a mostrar
+ */
+function showCopyFeedback(targetElement, message) {
+    const feedback = document.createElement('div');
+    feedback.textContent = message;
+    feedback.classList.add('copy-feedback');
+    feedback.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(147,51,234,0.95);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        z-index: 10;
+        pointer-events: none;
+        white-space: nowrap;
+        animation: fadeInOut 2s ease-in-out forwards;
+    `;
+    targetElement.appendChild(feedback);
+
+    if (!document.querySelector('#copy-feedback-styles')) {
+        const style = document.createElement('style');
+        style.id = 'copy-feedback-styles';
+        style.textContent = `@keyframes fadeInOut { 0% { opacity: 0; transform: translate(-50%,-50%) scale(0.8); } 20%, 80% { opacity: 1; transform: translate(-50%,-50%) scale(1); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(0.8); } }`;
+        document.head.appendChild(style);
+    }
+
+    setTimeout(() => {
+        if (feedback.parentNode) {
+            feedback.parentNode.removeChild(feedback);
+        }
+    }, 2000);
+}
+
+/**
+ * Lógica para manejar la apertura de enlaces externos con feedback
+ * @param {Event} e - Evento de clic
+ * @param {Element} link - El elemento del enlace
+ * @param {string} url - La URL de destino
+ */
+function handleExternalLink(e, link, url) {
+    e.preventDefault();
+    const message = translations[currentLang]['link-opening'];
+    showCopyFeedback(link, message);
+    setTimeout(() => {
+        window.open(url, '_blank');
+    }, 800);
+}
+
+
+/**
  * Inicializa la sección de contacto, animaciones y funcionalidad de copia email
  */
 function initContactSection() {
     initIntersectionObservers();   // Lanza animaciones de entrada
-    initImageParallax();           // Añade efecto parallax en imagen
+    //initImageParallax();         // No es necesaria si usas el nuevo hero animado
     const emailLink = document.querySelector('.contact-email');
     if (emailLink) {
         emailLink.addEventListener('click', async (e) => {
@@ -660,12 +819,15 @@ function initializeApp() {
     initLanguageToggle();
     initActiveNavigation();
     initScrollIndicator();
-    updateCVButtonText();           // Establece texto inicial del botón CV
-    initCVDownloadLogic();          // Asocia el evento de descarga al botón
-    initIntersectionObservers();    // Inicializa animaciones
-    initProjectCards();             // Inicializa tarjetas activas en táctil
-    initMobileTouchFixes();         // Corrige problemas en móviles
-    initContactSection();           // Inicializa efectos en sección contacto
+    updateCVButtonText();             // Establece texto inicial del botón CV
+    initCVDownloadLogic();            // Asocia el evento de descarga al botón
+    initIntersectionObservers();      // Inicializa animaciones
+    initProjectCards();               // Inicializa tarjetas activas en táctil
+    initMobileTouchFixes();           // Corrige problemas en móviles
+    initContactSection();             // Inicializa efectos en sección contacto
+
+    // NUEVA FUNCIÓN: Inicializa las animaciones interactivas del hero
+    initHeroAnimation();
 }
 
 /**

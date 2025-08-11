@@ -1,7 +1,7 @@
 /* =========================================================================
 **
 ** PROYECTO: Portafolio de Vanessa Larrosa Vilar
-** ARCHIVO: styles.css
+** ARCHIVO: styles.css 
 **
 ** Estilos CSS para todo el sitio web
 **
@@ -12,7 +12,6 @@
 ** Importación de Fuentes y Variables
 ============== */
 /* Importa la fuente principal "Space Grotesk" de Google Fonts */
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 /* Define variables personalizadas (custom properties) para la paleta de colores y transiciones */
@@ -58,14 +57,11 @@
 
 /* Estilo base del <body> */
 body {
-    font-family: "Space Grotesk", sans-serif;
-    /* Aplica la fuente principal a todo el body */
-    background-color: var(--color-background);
-    /* Usa el color de fondo definido en las variables */
-    color: var(--color-text-light);
-    /* Usa el color de texto claro definido en las variables */
-    line-height: 1.6;
-    /* Establece una altura de línea cómoda para la lectura */
+    font-family: "Space Grotesk", sans-serif; /* Aplica la fuente principal a todo el body */
+    background-color: var(--color-background); /* Usa el color de fondo definido en las variables */
+    color: var(--color-text-light); /* Usa el color de texto claro definido en las variables */
+    line-height: 1.6; /* Establece una altura de línea cómoda para la lectura */
+    overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
 /* ===========
@@ -442,42 +438,99 @@ header.scrolled {
     overflow: hidden;
 }
 
-.hero-content {
-    max-width: 800px;
+
+.circuit-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    animation: fadeInUp 1.2s ease-out;
-    /* Animación de aparición */
-    z-index: 1;
-    /* Se superpone a otros elementos de fondo */
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
 }
 
-/* Título grande animado con gradiente */
-.hero-title {
-    font-size: clamp(2.5rem, 8vw, 6rem);
-    /* Tamaño de fuente que se ajusta al ancho de la pantalla */
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 1.2px;
-    margin: 0 0 20px;
-    display: inline-block;
-    background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+.circuit-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #06b6d4 20%, #8b5cf6 80%, transparent 100%);
+    opacity: 0.6;
+    transition: all 0.5s ease;
+}
+
+.circuit-line::before,
+.circuit-line::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.circuit-line::before {
+    width: 8px;
+    height: 8px;
+    background: #06b6d4;
+    left: 20%;
+    top: -3px;
+    box-shadow: 0 0 15px #06b6d4, 0 0 30px #06b6d4;
+}
+
+.circuit-line::after {
+    width: 6px;
+    height: 6px;
+    background: #8b5cf6;
+    right: 20%;
+    top: -2px;
+    box-shadow: 0 0 12px #8b5cf6, 0 0 25px #8b5cf6;
+    animation-delay: 1s;
+}
+
+.circuit-vertical {
+    width: 2px;
+    background: linear-gradient(180deg, transparent 0%, #9333ea 20%, #ec4899 80%, transparent 100%);
+}
+
+.circuit-vertical::before {
+    background: #9333ea;
+    box-shadow: 0 0 15px #9333ea, 0 0 30px #9333ea;
+}
+
+.circuit-vertical::after {
+    background: #ec4899;
+    box-shadow: 0 0 12px #ec4899, 0 0 25px #ec4899;
+}
+
+
+/* ==================================
+Estilos de Contenido del Hero (modificados)
+   ================================== */
+/* Título principal con animación de gradiente */
+.main-title {
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    z-index: 10;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #9333ea, #ec4899, #06b6d4);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: fadeInUp 1.2s ease-out, shimmer 3s ease-in-out infinite;
+    animation: gradientShift 4s ease infinite;
 }
 
-/* Subtítulo de la sección hero */
-.hero-subtitle {
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--color-text-faded);
+/* Subtítulo del hero */
+.subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
     max-width: 600px;
-    margin: 0 auto 60px;
-    animation: fadeInUp 1.2s ease-out 0.3s both;
-    /* Animación con un pequeño retraso */
+    line-height: 1.6;
+    opacity: 0.8;
+    z-index: 10;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 /* Indicador de scroll (flecha animada) */
@@ -493,7 +546,8 @@ header.scrolled {
     gap: 15px;
     cursor: pointer;
     transition: all var(--transition-speed) ease;
-    animation: fadeInUp 1.2s ease-out 0.6s both;
+    z-index: 10;
+    animation: bounce 2s infinite;
 }
 
 /* Texto del indicador de scroll */
@@ -514,8 +568,6 @@ header.scrolled {
     color: var(--color-text-subtle);
     transform: rotate(90deg);
     transition: all var(--transition-speed) ease;
-    animation: pulse-down-subtle 2s ease-in-out infinite;
-    /* Animación de pulsación */
 }
 
 /* Efecto hover en el indicador de scroll */
@@ -635,7 +687,6 @@ header.scrolled {
     transition: all var(--transition-speed) ease-in-out;
     padding: 8px 12px;
     border-radius: 8px;
-    /*border: 1px solid var(--color-primary);*/
     user-select: none;
     /* Para evitar la selección del texto al tocar */
 }
@@ -1114,6 +1165,21 @@ header.scrolled {
     }
 }
 
+/* NUEVA ANIMACIÓN: Brillo para el texto del hero */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* Animación de pulsación de la flecha de scroll */
 @keyframes pulse-down-subtle {
 
@@ -1126,6 +1192,26 @@ header.scrolled {
     50% {
         transform: translateY(6px) rotate(90deg);
         opacity: 1;
+    }
+}
+
+/* NUEVA ANIMACIÓN: Rebote sutil para el indicador de scroll */
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
     }
 }
 
@@ -1206,7 +1292,26 @@ header.scrolled {
     transform: translateX(100%);
 }
 
+/* NUEVA ANIMACIÓN: Flujo de circuitos */
+@keyframes circuitFlow {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
 
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(calc(100vw + 100px));
+    }
+}
 
 /* ===========
 ** Animaciones al entrar en vista (scroll)
@@ -1289,7 +1394,6 @@ header.scrolled {
 /* ===========
 ** MEDIA QUERIES – Responsive
 ============= */
-
 /* ESCRITORIO - Ajustes para pantallas grandes */
 @media (min-width: 1024px) {
     header {
@@ -1353,11 +1457,12 @@ header.scrolled {
         margin-bottom: 2rem;
     }
 
-    .hero-title {
+    .main-title {
         margin-bottom: 40px;
+        font-size: 6rem;
     }
 
-    .hero-subtitle {
+    .subtitle {
         font-size: 1.4rem;
         margin-bottom: 100px;
     }
@@ -1426,15 +1531,16 @@ header.scrolled {
 
     /* Asegurar que el brillo se mantenga dentro del área del enlace */
     .contact-link {
-        overflow: hidden; /* Esto evita que el brillo se salga del área del enlace */
+        overflow: hidden;
+        /* Esto evita que el brillo se salga del área del enlace */
     }
-    
+
     .contact-link::before {
         right: 0;
         left: auto;
         transform: translateX(100%);
     }
-    
+
     .contact-link:hover::before {
         transform: translateX(-100%);
     }
@@ -1543,7 +1649,6 @@ header.scrolled {
         .contact-container {
             padding: 2rem 1rem;
             margin: 0 auto;
-            /* Corrección: Alinea el contenedor al centro, igual que los demás */
         }
 
         /* Título de la sección de contacto alineado a la izquierda */
@@ -1563,17 +1668,14 @@ header.scrolled {
         /* Información de contacto para que aparezca antes que la imagen */
         .contact-info {
             order: 1;
-            /* Establece el orden de visualización a 1 para que aparezca primero */
             gap: 2rem;
         }
 
         /* Imagen de perfil para que aparezca al final */
         .contact-image {
             order: 2;
-            /* Establece el orden de visualización a 2 para que aparezca al final */
             margin-bottom: 2rem;
             align-self: center;
-            /* Centra la imagen de perfil en su contenedor flex */
         }
 
         .image-container {
@@ -1591,13 +1693,9 @@ header.scrolled {
             font-size: 1.1rem;
             padding: 1rem 0;
             flex-direction: row;
-            /* Cambia la dirección del flujo de los elementos a horizontal (texto e ícono en la misma línea) */
             align-items: center;
-            /* Centra los elementos verticalmente en el enlace */
             justify-content: space-between;
-            /* Distribuye el espacio para que el texto esté a la izquierda y el ícono a la derecha */
             position: relative;
-            /* Agregado para que el pseudo-elemento `::before` se posicione correctamente */
         }
 
         /* Corrección para que la línea de hover no se vea mal */
@@ -1612,15 +1710,12 @@ header.scrolled {
 
         .contact-link:hover {
             transform: translateX(0);
-            /* Anula la animación de desplazamiento al pasar el ratón en la versión móvil */
             padding-left: 0;
-            /* Anula el padding que causaba el desplazamiento */
         }
 
         /* Íconos sociales alineados a la izquierda */
         .social-icons {
             justify-content: flex-start;
-            /* Alinea los íconos al inicio del contenedor (izquierda) */
             gap: 1rem;
             padding-top: 1.5rem;
             position: relative;
