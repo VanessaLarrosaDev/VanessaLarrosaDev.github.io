@@ -1,49 +1,33 @@
 💼 Portfolio de Vanessa Larrosa
-
 Desarrolladora de Software
 
-Este portfolio es una muestra de mis habilidades en el desarrollo web. He utilizado tecnologías modernas para crear una experiencia de usuario interactiva y optimizada, centrada en la eficiencia y el diseño.
 
+Este portfolio es una muestra de mis habilidades en el desarrollo web. Está construido con tecnologías modernas para ofrecer una experiencia de usuario interactiva, optimizada y con un enfoque en la eficiencia y el diseño.
+
+🛠️ Tecnologías y Herramientas
+<p align="left"> <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" /> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" /> <img src="https://img.shields.io/badge/JavaScript-F7E01D?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" /> <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" /> <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" /> </p>
 ✨ Características Principales
+Diseño Interactivo y Minimalista: Animación de fondo en el hero con efectos de ondas, circuitos y cursor personalizado que reacciona al movimiento del ratón.
 
--Diseño Interactivo y Minimalista: Animación de fondo en el "hero" con efectos de ondas, circuitos y un cursor personalizado que reaccionan al movimiento del ratón.
+Diseño Responsive: Enfoque Mobile First para adaptarse perfectamente a cualquier dispositivo.
 
--Diseño Responsive: Un enfoque "Mobile First" asegura una adaptación perfecta a cualquier dispositivo, desde móviles hasta grandes pantallas de escritorio.
+Navegación Intuitiva: Transiciones fluidas y menú claro con sistema de traducción integrado.
 
--Navegación Intuitiva: Transiciones fluidas entre secciones y un menú de navegación claro, con un sistema de traducción integrado para una experiencia global.
+Animaciones Dinámicas: JavaScript y CSS para animaciones on scroll.
 
--Animaciones Dinámicas: Uso de JavaScript y CSS para animaciones al hacer scroll que revelan el contenido de manera elegante.
-
--Optimización del Rendimiento: Código limpio y organizado para garantizar una carga rápida y fluida del sitio.
+Optimización del Rendimiento: Código limpio y carga rápida.
 
 🎨 Proceso de Diseño
-
-El diseño de este portfolio fue concebido previamente en Figma. Utilicé esta herramienta para definir la estructura de la página, la paleta de colores, la tipografía y las interacciones, asegurando un diseño coherente y una experiencia de usuario bien planificada antes de comenzar a codificar.
-
-🛠️ Tecnologías Utilizadas
-
-HTML5: Estructura semántica y accesible del contenido.
-
-CSS3: Estilos avanzados, animaciones keyframe, variables CSS y diseño responsive.
-
-JavaScript: Lógica de interacción, animaciones del hero, control de scroll, y funcionalidad de traducción.
-
-Git & GitHub: Control de versiones del proyecto y despliegue del sitio web.
+Diseñado en Figma, definiendo estructura, paleta de colores, tipografía e interacciones antes de la codificación, garantizando coherencia y una UX fluida.
 
 🌐 Demo
-
-Puedes ver la versión en vivo del portfolio aquí:
-
-Ver portfolio en vivo
+🔗 Ver Portfolio en Vivo
 
 📞 Contacto
-
-Puedes contactarme a través de los siguientes canales:
-
 Email: vanessalarrosadev@gmail.com
 
 LinkedIn: Vanessa Larrosa Vilar
 
 GitHub: @VanessaLarrosaDev
 
-Este proyecto fue desarrollado íntegramente con HTML, CSS y JavaScript.
+💡 Proyecto desarrollado íntegramente con HTML, CSS y JavaScript.
