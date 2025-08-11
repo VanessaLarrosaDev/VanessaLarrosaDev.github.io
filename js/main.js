@@ -372,6 +372,9 @@ function initHeroAnimation() {
         // Añade un sutil efecto de resplandor al título
         mainTitle.style.textShadow = `0 0 ${10 + intensity * 20}px rgba(147,51,234,${0.3 + intensity * 0.4})`;
 
+
+        const subtitle = document.querySelector('.subtitle');
+
         // Aumenta la opacidad del subtítulo al alejar el ratón del centro
         subtitle.style.opacity = 0.8 + intensity * 0.2;
     }
