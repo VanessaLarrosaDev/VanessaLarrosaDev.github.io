@@ -337,7 +337,7 @@ function initHeroAnimation() {
         updateText();
     });
 
-    
+
 
     // Función para actualizar el brillo y la escala de las líneas de circuito
     function updateCircuits() {
@@ -367,17 +367,18 @@ function initHeroAnimation() {
         const intensity = Math.min(distance / 300, 1);
 
         const mainTitle = document.querySelector('.main-title');
-
-
-        // Añade un sutil efecto de resplandor al título
-        mainTitle.style.textShadow = `0 0 ${10 + intensity * 20}px rgba(147,51,234,${0.3 + intensity * 0.4})`;
-
+        if (mainTitle) {
+            // Añade un sutil efecto de resplandor al título
+            mainTitle.style.textShadow = `0 0 ${10 + intensity * 20}px rgba(147,51,234,${0.3 + intensity * 0.4})`;
+        }
 
         const subtitle = document.querySelector('.subtitle');
-
-        // Aumenta la opacidad del subtítulo al alejar el ratón del centro
-        subtitle.style.opacity = 0.8 + intensity * 0.2;
+        if (subtitle) {
+            // Aumenta la opacidad del subtítulo al alejar el ratón del centro
+            subtitle.style.opacity = 0.8 + intensity * 0.2;
+        }
     }
+
 
     // Crea y añade las líneas de circuito al DOM
     function createCircuits() {
