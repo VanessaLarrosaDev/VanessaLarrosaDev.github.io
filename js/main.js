@@ -366,6 +366,9 @@ function initHeroAnimation() {
         const distance = Math.sqrt(Math.pow(mouseX - centerX, 2) + Math.pow(mouseY - centerY, 2));
         const intensity = Math.min(distance / 300, 1);
 
+        const mainTitle = document.querySelector('.main-title');
+
+
         // Añade un sutil efecto de resplandor al título
         mainTitle.style.textShadow = `0 0 ${10 + intensity * 20}px rgba(147,51,234,${0.3 + intensity * 0.4})`;
 
