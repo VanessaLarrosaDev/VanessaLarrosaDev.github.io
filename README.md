@@ -1,49 +1,91 @@
-💼 Portfolio de Vanessa Larrosa
+# 💼 Portfolio de Vanessa Larrosa
+## Desarrolladora de Software
 
-Desarrolladora de Software
+Este portfolio es una muestra de mis habilidades en el desarrollo web. Está construido con tecnologías modernas para ofrecer una experiencia de usuario interactiva, optimizada y con un enfoque en la eficiencia y el diseño.
 
-Este portfolio es una muestra de mis habilidades en el desarrollo web. He utilizado tecnologías modernas para crear una experiencia de usuario interactiva y optimizada, centrada en la eficiencia y el diseño.
+## 🛠️ Tecnologías y Herramientas
 
-✨ Características Principales
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
--Diseño Interactivo y Minimalista: Animación de fondo en el "hero" con efectos de ondas, circuitos y un cursor personalizado que reaccionan al movimiento del ratón.
+## ✨ Características Principales
 
--Diseño Responsive: Un enfoque "Mobile First" asegura una adaptación perfecta a cualquier dispositivo, desde móviles hasta grandes pantallas de escritorio.
+### 🎨 Diseño Interactivo y Minimalista
+- Animación de fondo con efectos de circuitos y partículas conectadas
+- Fondo oscuro con gradientes sutiles y efectos de profundidad
+- Tipografía moderna con efectos de gradiente en texto destacado
+- Paleta de colores oscura con acentos en tonos púrpura y cyan
 
--Navegación Intuitiva: Transiciones fluidas entre secciones y un menú de navegación claro, con un sistema de traducción integrado para una experiencia global.
+### 📱 Diseño Responsive
+- Enfoque Mobile First para adaptarse perfectamente a cualquier dispositivo
+- Experiencia optimizada desde móviles hasta desktop
 
--Animaciones Dinámicas: Uso de JavaScript y CSS para animaciones al hacer scroll que revelan el contenido de manera elegante.
+### 🧭 Navegación Intuitiva
+- Transiciones fluidas y suaves
+- Menú claro e intuitivo
+- Sistema de traducción integrado
 
--Optimización del Rendimiento: Código limpio y organizado para garantizar una carga rápida y fluida del sitio.
+### 🎭 Animaciones Dinámicas
+- Animaciones CSS y JavaScript optimizadas
+- Efectos on scroll para mejor engagement
+- Micro-interacciones que mejoran la UX
 
-🎨 Proceso de Diseño
+### ⚡ Optimización del Rendimiento
+- Código limpio y semántico
+- Carga rápida y eficiente
+- Buenas prácticas de desarrollo
 
-El diseño de este portfolio fue concebido previamente en Figma. Utilicé esta herramienta para definir la estructura de la página, la paleta de colores, la tipografía y las interacciones, asegurando un diseño coherente y una experiencia de usuario bien planificada antes de comenzar a codificar.
+## 🎨 Proceso de Diseño
 
-🛠️ Tecnologías Utilizadas
+El proyecto fue **diseñado primero en Figma**, definiendo cuidadosamente:
+- 📐 Estructura y layout
+- 🎨 Paleta de colores y tipografía
+- 🔄 Interacciones y animaciones
+- 📱 Responsive design
 
-HTML5: Estructura semántica y accesible del contenido.
+Esta metodología garantiza coherencia visual y una experiencia de usuario fluida antes de comenzar la codificación.
 
-CSS3: Estilos avanzados, animaciones keyframe, variables CSS y diseño responsive.
+## 🌐 Demo
 
-JavaScript: Lógica de interacción, animaciones del hero, control de scroll, y funcionalidad de traducción.
+### [🔗 Ver Portfolio en Vivo](https://vanessalarrosadev.github.io/)
 
-Git & GitHub: Control de versiones del proyecto y despliegue del sitio web.
+*¡Explora mi trabajo y conoce más sobre mi experiencia profesional!*
 
-🌐 Demo
+## 📞 Contacto
 
-Puedes ver la versión en vivo del portfolio aquí:
+¿Interesado en colaborar? ¡Contactemos!
 
-Ver portfolio en vivo
+[![Email](https://img.shields.io/badge/Email-vanessalarrosadev@gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vanessalarrosadev@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Vanessa%20Larrosa%20Vilar-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/vanessa-larrosa-vilar)
+[![GitHub](https://img.shields.io/badge/GitHub-@VanessaLarrosaDev-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/VanessaLarrosaDev)
 
-📞 Contacto
+## 💡 Tecnologías del Proyecto
 
-Puedes contactarme a través de los siguientes canales:
+Este proyecto fue desarrollado íntegramente con:
+- **HTML5** - Estructura semántica y accesible
+- **CSS3** - Estilos modernos con Flexbox y Grid
+- **JavaScript** - Interactividad y animaciones dinámicas
 
-Email: vanessalarrosadev@gmail.com
 
-LinkedIn: Vanessa Larrosa Vilar
 
-GitHub: @VanessaLarrosaDev
+## 📂 Estructura del Proyecto
 
-Este proyecto fue desarrollado íntegramente con HTML, CSS y JavaScript.
+```
+vanessalarrosadev.github.io/
+├── index.html          # Página principal
+├── assets/             # Recursos del proyecto
+├── css/                # Estilos principales
+├── images/             # Imágenes del proyecto
+├── js/                 # JavaScript principal
+└── README.md           # Este archivo
+```
+
+---
+
+⭐ Si te gusta este proyecto, ¡no olvides darle una estrella!
+
+*Desarrollado con ❤️ por [Vanessa Larrosa](https://vanessalarrosadev.github.io/)*
