@@ -63,8 +63,8 @@ const translations = {
         "brand-text": "VANESSA LARROSA",
         "email-copied": "¡Email copiado al portapapeles!",
         "link-opening": "Abriendo enlace...",
-        "about-touch-message": "¡Tócame!", // Para móviles/dispositivos táctiles
-        "about-click-mobile": "¡Tócame!"    // Clave extra para evitar errores si se usa legacy
+        "about-touch-message": "¡Toca Aquí!", // Para móviles/dispositivos táctiles
+        "about-click-mobile": "¡Toca Aquí!"    // Clave extra para evitar errores si se usa legacy
     },
 
     en: {
@@ -104,8 +104,8 @@ const translations = {
         "brand-text": "VANESSA LARROSA",
         "email-copied": "Email copied to clipboard!",
         "link-opening": "Opening link...",
-        "about-touch-message": "Tap me!",
-        "about-click-mobile": "Tap me!"
+        "about-touch-message": "Tap Here!",
+        "about-click-mobile": "Tap Here!"
     }
 };
 
