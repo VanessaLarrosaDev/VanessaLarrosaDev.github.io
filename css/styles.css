@@ -503,15 +503,38 @@ header.scrolled {
 /* ==================================
 Estilos de Contenido del Hero (modificados)
    ================================== */
+
 /* Título principal con animación de gradiente */
 .main-title {
-    font-size: clamp(3rem, 8vw, 8rem);
+    /* CAMBIO PRINCIPAL: Clamp más conservador para evitar desbordamiento */
+    font-size: clamp(2.5rem, 6vw, 8rem); /* Antes era: clamp(3rem, 8vw, 8rem) */
     font-weight: 900;
-    line-height: 1.15;
+    
+    /* MEJORA: Line-height más espaciado para mejor legibilidad */
+    line-height: 1.1; /* Antes era: 1em */
+    
     margin-bottom: 2rem;
     z-index: 10;
     position: relative;
     transition: all 0.3s ease;
+    
+    /* NUEVAS PROPIEDADES ANTI-DESBORDAMIENTO: */
+
+    /* Permite partir palabras largas automáticamente */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    
+    /* Añade guiones automáticos al partir palabras */
+    hyphens: auto;
+    
+    /* CENTRADO PERFECTO: */
+    text-align: center;
+    width: 100%;
+    
+    /* LIMITADOR DE ANCHO: Nunca ocupará más del 90% de la pantalla */
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .gradient-text {
@@ -1391,9 +1414,89 @@ Estilos de Contenido del Hero (modificados)
     transition-delay: 0.4s;
 }
 
+
 /* ===========
-** MEDIA QUERIES – Responsive
+** MEDIA QUERIES – Responsive (VERSIÓN MEJORADA)
 ============= */
+
+/* ==================================
+** NUEVAS MEDIA QUERIES ESPECÍFICAS PARA EL TÍTULO
+** Solucionan el problema de "Desarrolladora" cortándose
+** ================================== */
+
+/* DISPOSITIVOS MUY PEQUEÑOS: iPhone SE, Galaxy A pequeños (≤320px) */
+@media (max-width: 320px) {
+    .main-title {
+        /* Tamaño fijo mínimo para pantallas extremas */
+        font-size: 2rem; /* 32px fijos */
+        line-height: 1.05;
+        letter-spacing: -0.8px; /* Máxima compresión del espaciado */
+        max-width: 98vw; /* Aprovecha casi todo el espacio */
+    }
+    
+    /* Subtítulo también más pequeño en pantallas extremas */
+    .subtitle {
+        font-size: 0.9rem;
+        max-width: 95vw;
+    }
+    
+    /* Hero con menos padding */
+    .hero {
+        padding: 15px 10px;
+    }
+}
+
+/* DISPOSITIVOS PEQUEÑOS: iPhone SE normal, Galaxy A pequeños (321px-375px) */
+@media (min-width: 321px) and (max-width: 375px) {
+    .main-title {
+        /* Tamaño más pequeño pero aún legible */
+        font-size: clamp(2.2rem, 8vw, 3rem); /* Mínimo 35px */
+        line-height: 1.05; /* Líneas más compactas para ahorrar espacio vertical */
+        letter-spacing: -0.5px; /* Reduce el espacio entre letras para ganar anchura */
+        max-width: 95vw; /* Aprovecha más espacio horizontal */
+    }
+    
+    /* Hero con padding ajustado */
+    .hero {
+        padding: 20px 15px;
+    }
+}
+
+/* IPHONES ESTÁNDAR: iPhone 12, 13, 14, 15, Galaxy S21-23 (376px-428px) */
+@media (min-width: 376px) and (max-width: 428px) {
+    .main-title {
+        /* Tamaño balanceado para estas pantallas */
+        font-size: clamp(2.8rem, 7vw, 4rem); /* Mínimo 45px */
+        line-height: 1.1; /* Line-height estándar */
+        letter-spacing: -0.3px; /* Reducción más sutil del espaciado */
+        max-width: 92vw; /* Margen de seguridad del 4% a cada lado */
+    }
+}
+
+/* MÓVILES GRANDES: iPhone Pro Max, OnePlus, etc. (429px-767px) */
+@media (min-width: 429px) and (max-width: 767px) {
+    .main-title {
+        /* Tamaño más grande para pantallas amplias */
+        font-size: clamp(3.2rem, 6.5vw, 5rem);
+        line-height: 1.1;
+        max-width: 90vw; /* Margen de seguridad del 5% a cada lado */
+    }
+}
+
+/* TABLETS: iPads, tablets Android (768px-1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .main-title {
+        /* Tamaño grande para tablets */
+        font-size: clamp(4rem, 6vw, 6rem);
+        line-height: 1.1;
+        max-width: 85vw; /* Menos restricción de ancho */
+    }
+}
+
+/* ==================================
+** MEDIA QUERIES ORIGINALES MEJORADAS
+** ================================== */
+
 /* ESCRITORIO - Ajustes para pantallas grandes */
 @media (min-width: 1024px) {
     header {
@@ -1457,15 +1560,22 @@ Estilos de Contenido del Hero (modificados)
         margin-bottom: 2rem;
     }
 
+    /* MEJORA: Título de escritorio con valores optimizados */
     .main-title {
         margin-bottom: 40px;
-        font-size: 6rem;
-        line-height: 1.15;
+        /* CAMBIO: Usa clamp en lugar de valor fijo para mejor escalabilidad */
+        font-size: clamp(5rem, 6vw, 8rem); /* Antes era: font-size: 6rem; */
+        line-height: 1em; /* Line-height original para escritorio */
+        max-width: 80vw; /* Más libertad de ancho */
+        letter-spacing: normal; /* Espaciado normal entre letras */
     }
 
+    /* MEJORA: Subtítulo de escritorio mejorado */
     .subtitle {
-        font-size: 1.4rem;
+        /* CAMBIO: Mejor escalabilidad */
+        font-size: clamp(1.2rem, 2vw, 1.4rem); /* Antes era: font-size: 1.4rem; */
         margin-bottom: 100px;
+        max-width: min(600px, 80vw); /* Sistema dual de limitación */
     }
 
     .about {
@@ -1547,7 +1657,7 @@ Estilos de Contenido del Hero (modificados)
     }
 }
 
-/* TABLET y MOBILE (<=1023px) */
+/* TABLET y MOBILE (<=1023px) - VERSIÓN MEJORADA */
 @media (max-width: 1023px) {
     .hamburger {
         display: flex;
@@ -1605,9 +1715,23 @@ Estilos de Contenido del Hero (modificados)
         transition-delay: 0.3s;
     }
 
+    /* MEJORA: Line-height optimizada para móviles */
     .main-title {
-        line-height: 1.20;
-        
+        line-height: 1.1; /* Antes era: 1em - Ahora es más espaciado */
+    }
+
+    /* MEJORA: Hero con padding optimizado */
+    .hero {
+        /* NUEVO: Padding lateral reducido en móviles para ganar espacio */
+        padding: 20px 15px; /* Se añade esta regla que antes no existía */
+    }
+
+    /* MEJORA: Subtítulo optimizado para móviles */
+    .subtitle {
+        /* NUEVO: Mejor escalabilidad y centrado para móviles */
+        font-size: clamp(1rem, 3vw, 1.3rem); /* Escala mejor */
+        max-width: min(500px, 90vw); /* Limitación dual */
+        margin: 0 auto; /* Centrado explícito */
     }
 
     .projects-container {
