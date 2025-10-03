@@ -10,8 +10,14 @@ let currentLang = 'es';
 
 // Objeto con la información para descargar el CV
 const cvConfig = {
-    filename: 'CV Vanessa Larrosa Vilar.pdf', // Nombre de archivo del CV
-    path: 'assets/cv/'                       // Ruta donde está el archivo
+    es: {
+        filename: 'CV-Vanessa-Larrosa-Vilar-ES.pdf', // Nombre del archivo del CV en español
+        path: 'assets/cv/'                           // Ruta donde se encuentra el CV
+    },
+    en: {
+        filename: 'Resume-Vanessa-Larrosa-Vilar-EN.pdf', // Nombre del archivo del CV en inglés
+        path: 'assets/cv/'
+    }
 };
 
 // Configuración para Intersection Observer utilizado en animaciones al hacer scroll
@@ -417,19 +423,6 @@ function initHeroAnimation() {
         createCircuits(); // Crea nuevos
     }
 
-    // Efectos al pasar el ratón por los enlaces de navegación
-    /*document.querySelectorAll('.nav a').forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(2)';
-            cursor.style.background = 'radial-gradient(circle, rgba(147,51,234,0.6) 0%, transparent 70%)';
-        });
-
-        link.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            cursor.style.background = 'radial-gradient(circle, rgba(147,51,234,0.8) 0%, transparent 70%)';
-        });
-    });*/
-
     // Llama a las funciones iniciales para crear los circuitos y regenerarlos
     createCircuits();
     // Vuelve a crear los circuitos cada 15 segundos para mantener la animación dinámica
@@ -477,14 +470,15 @@ function initParallaxEffect() {
  * Realiza la descarga del curriculum (PDF) usando un enlace invisible
  */
 function downloadCV() {
+    const config = cvConfig[currentLang]; // ← Selecciona según idioma
     const link = document.createElement('a');
-    link.href = `${cvConfig.path}${cvConfig.filename}`;
-    link.download = cvConfig.filename;
+    link.href = `${config.path}${config.filename}`;
+    link.download = config.filename;
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    showDownloadFeedback(); // Muestra aviso visual de descarga
+    showDownloadFeedback();
 }
 
 /**
