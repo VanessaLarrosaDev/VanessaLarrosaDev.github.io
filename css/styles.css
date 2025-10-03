@@ -541,7 +541,6 @@ Estilos de Contenido del Hero (modificados)
     background: linear-gradient(45deg, #9333ea, #ec4899, #06b6d4);
     background-size: 300% 300%;
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientShift 4s ease infinite;
 }
