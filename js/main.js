@@ -323,6 +323,15 @@ function initActiveNavigation() {
  * Animaciones interactivas del hero
  */
 function initHeroAnimation() {
+    // AGREGADO: Define circuitContainer al inicio
+    const circuitContainer = document.getElementById('circuitContainer');
+    
+    // AGREGADO: Si no existe el contenedor, sal de la función para evitar errores
+    if (!circuitContainer) {
+        console.warn('circuitContainer no encontrado');
+        return;
+    }
+    
     // Variables para la posición del ratón
     let mouseX = 0;
     let mouseY = 0;
@@ -336,8 +345,6 @@ function initHeroAnimation() {
         updateCircuits();
         updateText();
     });
-
-
 
     // Función para actualizar el brillo y la escala de las líneas de circuito
     function updateCircuits() {
@@ -379,7 +386,6 @@ function initHeroAnimation() {
         }
     }
 
-
     // Crea y añade las líneas de circuito al DOM
     function createCircuits() {
         // Líneas horizontales
@@ -412,7 +418,7 @@ function initHeroAnimation() {
     }
 
     // Efectos al pasar el ratón por los enlaces de navegación
-    document.querySelectorAll('.nav a').forEach(link => {
+    /*document.querySelectorAll('.nav a').forEach(link => {
         link.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(2)';
             cursor.style.background = 'radial-gradient(circle, rgba(147,51,234,0.6) 0%, transparent 70%)';
@@ -422,7 +428,7 @@ function initHeroAnimation() {
             cursor.style.transform = 'scale(1)';
             cursor.style.background = 'radial-gradient(circle, rgba(147,51,234,0.8) 0%, transparent 70%)';
         });
-    });
+    });*/
 
     // Llama a las funciones iniciales para crear los circuitos y regenerarlos
     createCircuits();
