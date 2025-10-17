@@ -39,29 +39,29 @@ const translations = {
         "nav-about-mobile": "Sobre mí",
         "nav-projects-mobile": "Proyectos",
         "nav-contact-mobile": "Contacto",
-        "hero-title": "DESARROLLADORA<br><span class='gradient-text'>DE SOFTWARE</span>", // Actualizado para el nuevo hero
-        "hero-subtitle": "Hola, soy Vanessa, graduada en DAM apasionada por el código, explorando frontend y backend para crear experiencias digitales completas.", // Sin comillas para el nuevo hero
+        "hero-title": "DESARROLLADORA<br><span class='gradient-text'>DE SOFTWARE</span>",
+        "hero-subtitle": "Hola, soy Vanessa, desarrolladora junior en DAM y actualmente en formación avanzada en Data Analytics e Inteligencia Artificial. Me apasiona el código y la automatización, explorando frontend y backend para crear experiencias digitales completas y soluciones basadas en datos.",
         "scroll-text": "Scroll para explorar",
         "about-title": "SOBRE MÍ",
-        "about-text-1": "Combino mi pasión por el código con una curiosidad infinita por aprender.",
-        "about-text-2": "Desde Unity hasta backend, disfruto explorando diferentes tecnologías y creando proyectos que resuelvan problemas reales.",
-        "about-text-3": "Mi experiencia como profesora me dio una perspectiva única: la paciencia para debuggear y la creatividad para encontrar soluciones elegantes.",
-        "about-text-4": "Siempre hay algo nuevo que descubrir en este mundo del desarrollo.",
-        "about-download-button": "¡Click aquí!", // Para escritorio
+        "about-download-button": "¡Click aquí!",
+        "about-text-1": "Mi recorrido en tecnología comenzó con el desarrollo de aplicaciones multiplataforma y programación en varios lenguajes. Actualmente me especializo en Data Analytics e Inteligencia Artificial, integrando automatización y análisis en mis proyectos.",
+        "about-text-2": "Disfruto combinando frontend y backend, explorando nuevas herramientas y metodologías ágiles. Desarrollo para resolver problemas reales, siempre buscando aportar eficiencia y valor.",
+        "about-text-3": "Mi experiencia como docente me ha dado creatividad, empatía y una perspectiva única para trabajar en equipo y abordar retos complejos.",
+        "about-text-4": "Mi meta es crecer en el mundo de los datos y la inteligencia artificial, aprendiendo de cada proyecto, cada día.",
         "download-feedback": "¡CV descargándose!",
         "projects-title": "PROYECTOS",
         "project-1-title": "**PROYECTO EN DESARROLLO 1**",
         "project-1-description": "Aquí irá la descripción de un emocionante proyecto en el que estoy trabajando o que está planificado, mostrando mis habilidades.",
-        "project-1-tags": "[ Tags: Próximamente, Tech1 ]",
+        "project-1-tags": "[ Tags: Próximamente, Tech 1 ]",
         "project-2-title": "**PROYECTO EN DESARROLLO 2**",
         "project-2-description": "Aquí irá la descripción de un emocionante proyecto en el que estoy trabajando o que está planificado, mostrando mis habilidades.",
-        "project-2-tags": "[ Tags: Próximamente, Tech2 ]",
+        "project-2-tags": "[ Tags: Próximamente, Tech 2 ]",
         "project-3-title": "**PROYECTO EN DESARROLLO 3**",
         "project-3-description": "Aquí irá la descripción de un emocionante proyecto en el que estoy trabajando o que está planificado, mostrando mis habilidades.",
-        "project-3-tags": "[ Tags: Próximamente, Tech3 ]",
+        "project-3-tags": "[ Tags: Próximamente, Tech 3 ]",
         "project-4-title": "**PROYECTO EN DESARROLLO 4**",
         "project-4-description": "Aquí irá la descripción de un emocionante proyecto en el que estoy trabajando o que está planificado, mostrando mis habilidades.",
-        "project-4-tags": "[ Tags: Próximamente, Tech4 ]",
+        "project-4-tags": "[ Tags: Próximamente, Tech 4 ]",
         "contact-title": "CONTACTAR",
         "contact-linkedin": "LinkedIn",
         "contact-github": "GitHub",
@@ -69,8 +69,8 @@ const translations = {
         "brand-text": "VANESSA LARROSA",
         "email-copied": "¡Email copiado al portapapeles!",
         "link-opening": "Abriendo enlace...",
-        "about-touch-message": "¡Toca Aquí!", // Para móviles/dispositivos táctiles
-        "about-click-mobile": "¡Toca Aquí!"    // Clave extra para evitar errores si se usa legacy
+        "about-touch-message": "¡Toca Aquí!",
+        "about-click-mobile": "¡Toca Aquí!"
     },
 
     en: {
@@ -80,29 +80,29 @@ const translations = {
         "nav-about-mobile": "About Me",
         "nav-projects-mobile": "Projects",
         "nav-contact-mobile": "Contact",
-        "hero-title": "SOFTWARE<br><span class='gradient-text'>DEVELOPER</span>", // Actualizado para el nuevo hero
-        "hero-subtitle": "Hi, I'm Vanessa, a DAM graduate passionate about code, exploring frontend and backend to create complete digital experiences.", // Sin comillas
+        "hero-title": "SOFTWARE<br><span class='gradient-text'>DEVELOPER</span>",
+        "hero-subtitle": "Hi, I'm Vanessa, junior developer in DAM and currently undergoing advanced training in Data Analytics and Artificial Intelligence. I'm passionate about code and automation, exploring frontend and backend to create complete digital experiences and data-driven solutions.",
         "scroll-text": "Scroll to explore",
         "about-title": "ABOUT ME",
-        "about-text-1": "I combine my passion for code with an infinite curiosity to learn.",
-        "about-text-2": "From Unity to backend, I enjoy exploring different technologies and creating projects that solve real problems.",
-        "about-text-3": "My experience as a teacher gave me a unique perspective: the patience to debug and the creativity to find elegant solutions.",
-        "about-text-4": "There's always something new to discover in this world of development.",
         "about-download-button": "Click here!",
+        "about-text-1": "My tech journey began with multiplatform app development and programming in various languages. Currently, I specialize in Data Analytics and Artificial Intelligence, integrating automation and analysis into my projects.",
+        "about-text-2": "I enjoy combining frontend and backend, exploring new tools and agile methodologies. I develop to solve real problems, always aiming for efficiency and value.",
+        "about-text-3": "My teaching experience has given me creativity, empathy, and a unique perspective for teamwork and tackling complex challenges.",
+        "about-text-4": "My goal is to grow in the world of data and AI, learning from every project, every day.",
         "download-feedback": "CV downloading!",
         "projects-title": "PROJECTS",
         "project-1-title": "**PROJECT IN DEVELOPMENT 1**",
         "project-1-description": "Here will go the description of an exciting project I'm working on or that is planned, showing my skills.",
-        "project-1-tags": "[ Tags: Coming Soon, Tech1 ]",
+        "project-1-tags": "[ Tags: Coming Soon, Tech 1 ]",
         "project-2-title": "**PROJECT IN DEVELOPMENT 2**",
         "project-2-description": "Here will go the description of an exciting project I'm working on or that is planned, showing my skills.",
-        "project-2-tags": "[ Tags: Coming Soon, Tech2 ]",
+        "project-2-tags": "[ Tags: Coming Soon, Tech 2 ]",
         "project-3-title": "**PROJECT IN DEVELOPMENT 3**",
         "project-3-description": "Here will go the description of an exciting project I'm working on or that is planned, showing my skills.",
-        "project-3-tags": "[ Tags: Coming Soon, Tech3 ]",
+        "project-3-tags": "[ Tags: Coming Soon, Tech 3 ]",
         "project-4-title": "**PROJECT IN DEVELOPMENT 4**",
         "project-4-description": "Here will go the description of an exciting project I'm working on or that is planned, showing my skills.",
-        "project-4-tags": "[ Tags: Coming Soon, Tech4 ]",
+        "project-4-tags": "[ Tags: Coming Soon, Tech 4 ]",
         "contact-title": "CONTACT",
         "contact-linkedin": "LinkedIn",
         "contact-github": "GitHub",
@@ -114,6 +114,7 @@ const translations = {
         "about-click-mobile": "Tap Here!"
     }
 };
+
 
 // ==================================
 // FUNCIONES UTILITARIAS
