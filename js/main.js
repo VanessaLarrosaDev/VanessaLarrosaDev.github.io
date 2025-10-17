@@ -11,11 +11,11 @@ let currentLang = 'es';
 // Objeto con la información para descargar el CV
 const cvConfig = {
     es: {
-        filename: 'CV-Vanessa-Larrosa-Vilar-ES.pdf', // Nombre del archivo del CV en español
+        filename: 'Vanessa Larrosa Vilar.pdf', // Nombre del archivo del CV en español
         path: 'assets/cv/'                           // Ruta donde se encuentra el CV
     },
     en: {
-        filename: 'Resume-Vanessa-Larrosa-Vilar-EN.pdf', // Nombre del archivo del CV en inglés
+        filename: 'Vanessa Larrosa Vilar Resume.pdf', // Nombre del archivo del CV en inglés
         path: 'assets/cv/'
     }
 };
